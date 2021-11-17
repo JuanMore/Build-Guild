@@ -3,16 +3,20 @@ const mongoose = require('mongoose')
 const ejsMate = require('ejs-mate')
 const app = express()
 const path = require('path');
+const Build = require('./models/build')
 
-mongoose.connect('mongodb://localhost:27017/ResumeCreator')
+// Connect to mongoose
+mongoose.connect('mongodb://localhost:27017/BuildGuild')
 
 const db = mongoose.connection
+
+// mongoose error handling
 db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', () => {
     console.log('Database connected')
 })
 
-const pages = []
+// const pages = []
 
 app.use(express.static(__dirname + '/public'));
 app.set('views', path.join(__dirname, 'views'));
@@ -30,6 +34,10 @@ app.get('/pages', (req, res) => {
 
 app.get('/pages/new', (req, res) => {
     res.render('pages/new')
+})
+
+app.post('/pages', async (req, res) => {
+    res.send(req.body)
 })
 
 app.get('/pages/:id', (req, res) => {
