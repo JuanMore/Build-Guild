@@ -1,0 +1,19 @@
+<% layout('layouts/boilerplate') %>
+<section class="bg-image">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h5>Welcome to Build Guild</h5>
+                <p>Here, you can upload and submit your build to be featured on the site!</p>
+                <p>Fill out the form below and show off that dope a** build</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<form action="/pages" method="POST">
+    <div class="">
+        <label for="Title"></label>
+        <input type="text" id="title" name="pages[title]">
+    </div>
+</form>

@@ -15,6 +15,7 @@ db.once('open', () => {
 const pages = []
 
 app.use(express.static(__dirname + '/public'));
+app.set('views', path.join(__dirname, 'views'));
 
 app.set('view engine', 'ejs')
 app.engine('ejs', ejsMate);
@@ -23,13 +24,19 @@ app.get('/', (req, res) => {
     res.render('home')
 })
 
-app.get('/index', (req, res) => {
-    res.render('index');
+app.get('/pages', (req, res) => {
+    res.render('pages/index');
 });
 
-app.get('/new', (req, res) => {
-    res.render('new')
+app.get('/pages/new', (req, res) => {
+    res.render('pages/new')
 })
+
+app.get('/pages/:id', (req, res) => {
+    res.render('pages/show')
+})
+
+
 
 const port = 3000
 app.listen(port)
