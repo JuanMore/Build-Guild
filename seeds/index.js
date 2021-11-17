@@ -1,5 +1,9 @@
 const mongoose = require('mongoose')
 const builders = require('./custombuilds')
+const {
+    descriptors,
+    adjective
+} = require('./seedHelpers')
 const Build = require('../models/build')
 
 // Connect to mongoose
@@ -13,23 +17,29 @@ db.once('open', () => {
     console.log('Database connected')
 })
 
+const sample = array => array[Math.floor(Math.random() * array.length)];
+
+// function seedDB
 const seedDb = async () => {
+    // start by clearing all
     await Build.deleteMany({})
-    builders.forEach(async function (element, random3) {
-        random3[element] = Math.floor(Math.random() * 3)
-        console.log({
-            random3
+    // loop through array - custombuilds.js
+    for (let i = 0; i < 10; i++) {
+        // get random - 10 'profiles'
+        const random3 = Math.floor(Math.random() * 3)
+        // set new profiles from our Build model
+        const profile = new Build({
+            user: `${builders[random3].user}`,
+            description: `${builders[random3].description}`,
+            title: `${sample(descriptors)}: ${sample(adjective)}`
         })
-    })
+        // save in mongo
+        await profile.save()
+    }
 
 }
 
-seedDb()
-
-// for (let i = 0; i < 3; i++) {
-//     const random3 = Math.floor(Mat.random() * 3)
-//     const profile = new Build({
-//         person: `${builders[random3].user}, ${builders[random3].description}`
-//     })
-//     await person.save()
-// }
+// returns promise - close connectin
+seedDb().then(() => {
+    mongoose.connection.close()
+})

@@ -4,6 +4,7 @@ const Schema = mongoose.Schema
 
 const buildSchema = new Schema({
     title: String,
+    user: String,
     description: String
 })
 

@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const ejsMate = require('ejs-mate')
 const app = express()
 const path = require('path');
+// model schema
 const Build = require('./models/build')
 
 // Connect to mongoose
@@ -28,8 +29,11 @@ app.get('/', (req, res) => {
     res.render('home')
 })
 
-app.get('/pages', (req, res) => {
-    res.render('pages/index');
+app.get('/pages', async (req, res) => {
+    const builds = await Build.find({})
+    res.render('pages/index', {
+        builds
+    });
 });
 
 app.get('/pages/new', (req, res) => {

@@ -1,10 +1,10 @@
-const descriptors = [
+module.exports.descriptors = [
     'Dope',
     'Test 1',
     'Test 2'
 ]
 
-const places = [
+module.exports.adjective = [
     'Hell Yeah',
     'So Dope',
     'Fuck Yeah'
