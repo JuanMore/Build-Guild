@@ -15,11 +15,43 @@
     </div>
 </section>
 
-<h1>All Users</h1>
-<ul>
-</ul>
+<section class="container">
+    <div class="row d-flex">
+        <div class="card-group">
+            <div class="card">
+                <div class="card-body">
+                    <i class="fas fa-user fa-3x mb-2 float-start" aria-hidden="true"></i>
+                    <h5 class="card-title">Make an Account</h5>
+                    <p class="card-text">Create an account and get started on showing off your build</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <i class="fas fa-wrench fa-3x float-start"></i>
+                    <h5 class="card-title">Add your build</h5>
+                    <p class="card-text">Upload your dope ass build
+                    </p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <i class="fas fa-comment fa-3x float-start" aria-hidden="true"></i>
+                    <h5 class="card-title">Comment on builds</h5>
+                    <p class="card-text">Comment, give feedback and praise other builders</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <i class="fas fa-edit fa-3x float-start"></i>
+                    <h5 class="card-title">Update your build</h5>
+                    <p class="card-text">Go in and update your build, add to it or delete it, forever</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-<div class="container mt-5" id="build-posts">
+<div class="container" id="build-posts">
     <div class="row d-flex flex-column">
         <div class="col-md-6 mt-5 mx-auto">
             <% for (let build of builds ) { %>
