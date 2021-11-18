@@ -130,8 +130,10 @@ body {
     border: 1px solid rgba(24, 28, 33, 0.06);
 }
 
-.card-footer .btn {
+.card-footer a.btn.btn-primary {
+    float: right;
     padding: 10px;
+    margin-right: 5px;
 }
 
 /* Carousel */
@@ -148,6 +150,7 @@ body {
     .bg-image h5,
     .bg-image p {
         width: 80%;
+        padding: 40px;
     }
 
     .bg-image h5 {
@@ -165,5 +168,21 @@ body {
     .bg-image p {
         width: 100%;
         padding: 30px;
+    }
+
+    .card-footer a.btn.btn-primary {
+        display: block;
+        padding: 5px;
+        margin-top: 8px;
+        float: none;
+    }
+}
+
+@media(max-width: 1200px) {
+
+    .bg-image h5,
+    .bg-image p {
+        width: 100%;
+        padding: 20px;
     }
 }

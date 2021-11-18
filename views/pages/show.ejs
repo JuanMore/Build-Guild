@@ -9,3 +9,56 @@
         </div>
     </div>
 </section>
+
+<h1>Builds & Users</h1>
+<h2><%= builds.user %> </h2>
+
+<h2><%= builds.title %> </h2>
+<h2><%= builds.description %> </h2>
+
+
+<div class="container mt-5" id="build-posts">
+    <div class="row d-flex flex-column">
+        <div class="col-md-6 mt-5 mx-auto">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="media mb-3">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+                            class="d-block img-w rounded-circle" alt="">
+                        <div class="media-body ml-3">
+                            <%= builds.user %>
+                            <div class="text-muted small">1 days ago</div>
+                        </div>
+                    </div>
+
+                    <p>
+                        <%= builds.description %>
+                        <br>
+                        <%= builds.title %>
+                    </p>
+                    <img src="https://images.unsplash.com/photo-1587202372583-49330a15584d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2787&q=80"
+                        class="d-block w-100" alt="...">
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="d-inline-block text-muted">
+                        <strong>123</strong> <i class="fas fa-eye"></i></small>
+                    </a>
+                    <a href="#" class="d-inline-block text-muted ml-3">
+                        <strong>12</strong> <i class="fas fa-thumbs-up"></i></small>
+                    </a>
+                    <a href="#" class="d-inline-block text-muted ml-3">
+                        <strong>200 </strong> <i class="fas fa-comments"></i></small>
+                    </a>
+                    <form class="d-inline-block float-right" action="/pages/<%= builds._id %>?_method=DELETE"
+                        method="POST" class="validated-form" novalidate>
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                    <a href="/pages/<%= builds._id %>/edit" class="d-inline-block float-right btn btn-primary">Edit
+                        Build
+                    </a>
+                    <a href="/pages/<%= builds._id %>" class="d-inline-block float-right btn btn-primary">View Build
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
