@@ -11,21 +11,110 @@
     </div>
 </section>
 
-<section>
+<div class="container">
+    <div class="row align-items-center mt-5">
+        <div class="col-lg-12 d-block">
+            <p>
+                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-1"
+                    aria-expanded="false" aria-controls="collapse-1">
+                    <i class="far fa-question-circle"> Help </i>
+                </button>
+            </p>
+            <div class="collapse" id="collapse-1">
+                <div class="card card-body">
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam cupiditate iure natus ad quae
+                        corrupti minus temporibus adipisci ab atque!</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur eligendi ab error maxime,
+                        commodi consequatur!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="container">
     <div class="row mx-auto mt-5">
-        <h2>Submit new build</h2>
-        <div class="col-lg-6" style="border: 1px solid red; width: 100px; height: 400px">
+        <h2>New build submission form</h2>
+        <div class="col-lg-6" style="border: 1px solid red; width: 100px; height: 500px">
             <form action="/pages" method="POST">
                 <div class="">
-                    <label for="Title">New build</label>
-                    <input type="text" id="title" name="pages[title]">
+                    <label class="form-label mt-2" for="name">Name:<%= builds.user %> </label>
+                    <input class="form-control" type="text" id="name" name="pages[user]">
                 </div>
                 <div class="">
-                    <label for="description">Description</label>
-                    <input type="text" id="description" name="pages[description]">
+                    <label class="form-label mt-2" for="title">Build Name: </label>
+                    <input class="form-control" type="text" id="title" name="pages[title]" required>
                 </div>
-                <button class="btn btn-dark">Submit Build</button>
-            </form>
+                <div class="">
+                    <label class="form-label mt-2" for="description">Description:</label>
+                    <input class="form-control" type="text" id="description" name="pages[description]" required>
+                </div>
+                <p class="mt-2">RGB Lighting:</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="pages[rgb]" id="rgb" value="Yes">
+                    <label class="form-check-label" for="rgb">
+                        Yes
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="pages[rgb]" id="rgb" value="No">
+                    <label class="form-check-label" for="rgb">
+                        No
+                    </label>
+                </div>
+                <p class="mt-2">Cooling:</p>
+                <select class="form-select mt-2" aria-label="cooling">
+                    <option selected class="lead">Air Cooling</option>
+                    <option value="1">Custom Liquid</option>
+                    <option value="2">AIO Cooling</option>
+                    <option value="3">Passive Cooling</option>
+                </select>
         </div>
+        <div class="col-lg-6">
+            <p class="fw-bold">Hardware:</p>
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-sm">CPU</span>
+                <input type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-sm">
+            </div>
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Motherboard</span>
+                <input type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-sm">
+            </div>
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Memory</span>
+                <input type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-sm">
+            </div>
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Graphics</span>
+                <input type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-sm">
+            </div>
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-sm">PSU</span>
+                <input type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-sm">
+            </div>
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Storage</span>
+                <input type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-sm">
+            </div>
+            <div class="mb-3">
+                <label for="formFileMultiple" class="form-label">Upload Images</label>
+                <input type="file" class="form-control" id="formFileMultiple" name="image" required>
+                <div class="invalid-feedback">
+                    <p class="alert">Show off your build with images, otherwise this is all kind of
+                        pointless?.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-dark mt-2">Submit Build</button>
+        </form>
+    </div>
     </div>
 </section>

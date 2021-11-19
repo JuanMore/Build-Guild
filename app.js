@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const ejsMate = require('ejs-mate')
+const morgan = require('morgan')
 const app = express()
 const path = require('path');
 // model schema
@@ -42,8 +43,11 @@ app.get('/pages', async (req, res) => {
     });
 });
 
-app.get('/pages/new', (req, res) => {
-    res.render('pages/new')
+app.get('/pages/new', async (req, res) => {
+    const builds = await Build.find({})
+    res.render('pages/new', {
+        builds
+    })
 })
 
 app.post('/pages', async (req, res) => {

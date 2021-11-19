@@ -34,6 +34,13 @@ body {
     padding-left: 0;
 }
 
+#btn-up {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
 /* Navbar */
 
 /* Navbar toggle */
@@ -157,6 +164,17 @@ body {
     border: 1px solid rgba(24, 28, 33, 0.06);
 }
 
+/* Builds - show page */
+#build-posts-show .card-body {
+    width: 100%;
+}
+
+#build-posts-show .card-footer {
+    display: flex;
+}
+
+
+
 .card-footer a.btn.btn-primary {
     float: right;
     padding: 10px;
@@ -169,6 +187,22 @@ body {
     -o-transition: 0s;
     transition: 0s;
 } */
+
+/* Footer */
+footer,
+footer a,
+footer h5 {
+    font-size: 14px;
+    color: #ffff;
+}
+
+footer .list-item {
+    text-decoration: none;
+}
+
+footer .list-item:hover {
+    border-bottom: 2px solid #eee;
+}
 
 /* Media Quieres */
 
