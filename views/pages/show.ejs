@@ -4,22 +4,18 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <h5>Welcome to Build Guild</h5>
-                <p>Show Page</p>
+                <p>Check out <%= builds.title %> </p>
+                <br>
+                <p><%= builds.description %> </p>
             </div>
         </div>
     </div>
 </section>
 
-<h1>Builds & Users</h1>
-<h2><%= builds.user %> </h2>
-
-<h2><%= builds.title %> </h2>
-<h2><%= builds.description %> </h2>
-
 
 <div class="container mt-5" id="build-posts-show">
-    <div class="row d-flex flex-column">
-        <div class="col-sm-4 mt-5">
+    <div class="row col-12 d-flex mx-auto">
+        <div class="col-sm-4 col-lg-4 col-md-4 mt-5">
             <div class="card mb-4">
                 <div class="card-body">
                     <div class="media mb-3">
@@ -50,12 +46,81 @@
                     <a href="#" class="d-inline-block text-muted ml-3">
                         <strong>200 </strong> <i class="fas fa-comments"></i></small>
                     </a>
-                    <a href="/pages/<%= builds._id %>/edit" class="ml-4 mr-2 btn-sm btn-primary">Edit
+                    <a href="/pages/<%= builds._id %>/edit" class="ml-3 mr-2 btn-sm btn-primary">Edit
                     </a>
-                    <form class="" action="/pages/<%= builds._id %>?_method=DELETE" method="POST" class="validated-form"
-                        novalidate>
+                    <form class="d-inline-block" action="/pages/<%= builds._id %>?_method=DELETE" method="POST"
+                        class="validated-form" novalidate>
                         <button class="btn-sm btn-danger"><i class="fas fa-trash"></i></button>
                     </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 mt-5">
+            <h1>Builds & Users</h1>
+            <h2><%= builds.user %> </h2>
+
+            <h2><%= builds.title %> </h2>
+            <h2><%= builds.description %> </h2>
+            <p>
+                RGB Lighting: <%= builds.rgb %>
+                <br>
+                Cooling: <%= builds.cooling %>
+                <br>
+                CPU: <%= builds.cpu %>
+                <br>
+                Motherboard: <%= builds.motherboard %>
+                <br>
+                Graphics: <%= builds.graphics %>
+                <br>
+                Storage: <%= builds.storage %>
+                <br>
+                PSU: <%= builds.psu %>
+                <br>
+                Case: <%= builds.case %>
+
+
+
+
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-2">
+    <div class="row ml-3">
+        <div class="col-lg-8">
+            <h3>Comments</h3>
+            <div class="card">
+                <!-- Comments form -->
+                <form action="#" method="POST" class="p-4">
+                    <div class="mb-3">
+                        <label for="body" class="form-label">Leave a comment</label>
+                        <textarea class="form-control" name="comment[body]" id="body" cols="30" rows="3"
+                            required></textarea>
+                        <div class="valid-feedback">
+                            Looks Good.
+                        </div>
+                    </div>
+                    <button class="btn btn-success">Submit</button>
+                </form>
+                <!-- Comments -->
+                <div class="card p-4">
+                    <div class="card-body mb-3">
+                        <div class="media mb-3">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80"
+                                class="d-block img-w rounded-circle" alt="">
+                            <div class="media-body ml-3">
+                                <%= builds.user %>
+                                <div class="text-muted small">1 days ago</div>
+                            </div>
+                        </div>
+                        <div class="card-subtitle mt-2 mb-3 text-muted">Commented:</div>
+                        <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus iusto
+                            facere a possimus tempore error, perferendis vel deleniti officia sunt.</p>
+                        <form action="" method="POST">
+                            <button class="btn btn-sm btn-danger">Delete</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

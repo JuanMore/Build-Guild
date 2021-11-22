@@ -15,39 +15,47 @@
     </div>
 </section>
 
-<section class="container">
+<section class="container-fluid">
     <h2 class="text-center mt-5 text-lowercase">How this works</h2>
     <p class="text-center">We are a passionate community of custom PC builders. Show off your builds, check out other's
         builds and leave a comment</p>
-    <div class="row d-flex">
+    <div class="row row-cols" id="small-cards">
         <div class="card-group">
-            <div class="card">
-                <div class="card-body">
-                    <i class="fas fa-user fa-3x mb-2 float-start" aria-hidden="true"></i>
-                    <h5 class="card-title">Make an Account</h5>
-                    <p class="card-text">Create an account and get started on showing off your build</p>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <i class="fas fa-user fa-3x mb-2 float-start" aria-hidden="true"></i>
+                        <h5 class="card-title">Make an Account</h5>
+                        <p class="card-text">Create an account and get started on showing off your build</p>
+                    </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-body">
-                    <i class="fas fa-wrench fa-3x float-start"></i>
-                    <h5 class="card-title">Add your build</h5>
-                    <p class="card-text">Upload your dope a** build
-                    </p>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <i class="fas fa-wrench fa-3x float-start"></i>
+                        <h5 class="card-title">Add your build</h5>
+                        <p class="card-text">Upload your dope a** build
+                        </p>
+                    </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-body">
-                    <i class="fas fa-comment fa-3x float-start" aria-hidden="true"></i>
-                    <h5 class="card-title">Comment on builds</h5>
-                    <p class="card-text">Comment, give feedback and praise other builders</p>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <i class="fas fa-comment fa-3x float-start" aria-hidden="true"></i>
+                        <h5 class="card-title">Comment on builds</h5>
+                        <p class="card-text">Comment, give feedback and praise other builders</p>
+                    </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-body">
-                    <i class="fas fa-edit fa-3x float-start"></i>
-                    <h5 class="card-title">Update your build</h5>
-                    <p class="card-text">Go in and update your builds, add to it or delete it, forever</p>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <i class="fas fa-edit fa-3x float-start"></i>
+                        <h5 class="card-title">Update your build</h5>
+                        <p class="card-text">Go in and update your builds, add to it or delete it, forever</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -56,7 +64,7 @@
 
 <div class="container" id="build-posts">
     <div class="row d-flex flex-column">
-        <div class="col-md-6 mt-5 mx-auto">
+        <div class="col-md-5 mt-5 mx-auto">
             <h3 class="text-left text-muted">View Builds: </h3>
             <% for (let build of builds ) { %>
             <div class="card mb-4">
