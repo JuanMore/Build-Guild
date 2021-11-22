@@ -1,3 +1,7 @@
+const dotenv = require('dotenv')
+dotenv.config({
+    path: __dirname + '/.env'
+});
 const express = require('express')
 const mongoose = require('mongoose')
 const ejsMate = require('ejs-mate')
@@ -7,9 +11,11 @@ const morgan = require('morgan')
 const catchErr = require('./helpers/wrapAsync')
 const errHandler = require('./helpers/errorhandling')
 const {
-    buildSchema
+    buildSchema,
+    commentSchema
 } = require('./schemas.js')
 const Build = require('./models/build')
+const Comment = require('./models/comments')
 
 const app = express()
 const path = require('path');
@@ -18,7 +24,13 @@ const path = require('path');
 const methodOverride = require('method-override')
 
 // Connect to mongoose
-mongoose.connect('mongodb://localhost:27017/BuildGuild')
+// mongoose.connect('mongodb://localhost:27017/BuildGuild')
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/BuildGuild'
+
+mongoose.connect(dbUrl, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
 
 const db = mongoose.connection
 
@@ -43,6 +55,7 @@ app.use(express.urlencoded({
 
 app.use(methodOverride('methodfield'))
 
+/******** Middleware  *******/
 // define validation function
 const validateBuilds = (req, res, next) => {
     // pass data through to schema
@@ -51,6 +64,19 @@ const validateBuilds = (req, res, next) => {
     } = buildSchema.validate(req.body)
     // if there's an error - pass error to our error handler
     // with details
+    if (error) {
+        const msg = error.details.map(el => el.message).join(',')
+        throw new errHandler(msg, 400)
+    } else {
+        next()
+    }
+}
+
+// Commment middleware/validation
+const valComment = (req, res, next) => {
+    const {
+        error
+    } = commentSchema.validate(req.body)
     if (error) {
         const msg = error.details.map(el => el.message).join(',')
         throw new errHandler(msg, 400)
@@ -87,7 +113,7 @@ app.post('/pages', validateBuilds, catchErr(async (req, res) => {
 
 app.get('/pages/:id', catchErr(async (req, res) => {
     // pass in id from req . -> params -> .id
-    const builds = await Build.findById(req.params.id)
+    const builds = await Build.findById(req.params.id).populate('comments')
     res.render('pages/show', {
         builds
     })
@@ -117,6 +143,32 @@ app.post('/pages/:id', catchErr(async (req, res) => {
     } = req.params
     await Build.findByIdAndDelete(id)
     res.redirect(`/pages`)
+}))
+
+app.post('/pages/:id/comments', valComment, catchErr(async (req, res) => {
+    const builds = await Build.findById(req.params.id)
+    const comment = new Comment(req.body.comment)
+    // push comment to our comment schema
+    builds.comments.push(comment)
+    await comment.save()
+    await builds.save()
+    // redirect to show - display comment
+    res.redirect(`/pages/${builds._id}`)
+}))
+
+app.delete('/pages/:id/comments/:commentId', catchErr(async (req, res) => {
+    const {
+        id,
+        commentId
+    } = req.params
+    // pull from comment array
+    await Comment.findByIdAndUpdate(id, {
+        $pull: {
+            comment: commentId
+        }
+    })
+    await Comment.findByIdAndDelete(commentId)
+    res.redirect(`/pages/${id}`)
 }))
 
 app.all('*', (req, res, next) => {

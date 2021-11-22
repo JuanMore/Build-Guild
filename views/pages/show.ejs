@@ -48,7 +48,7 @@
                     </a>
                     <a href="/pages/<%= builds._id %>/edit" class="ml-3 mr-2 btn-sm btn-primary">Edit
                     </a>
-                    <form class="d-inline-block" action="/pages/<%= builds._id %>?_method=DELETE" method="POST"
+                    <form class="d-inline-block" action="/pages/<%=builds._id%>?_method=DELETE" method="POST"
                         class="validated-form" novalidate>
                         <button class="btn-sm btn-danger"><i class="fas fa-trash"></i></button>
                     </form>
@@ -92,7 +92,7 @@
             <h3>Comments</h3>
             <div class="card">
                 <!-- Comments form -->
-                <form action="#" method="POST" class="p-4">
+                <form action="/pages/<%=builds._id%>/comments" method="POST" class="p-4">
                     <div class="mb-3">
                         <label for="body" class="form-label">Leave a comment</label>
                         <textarea class="form-control" name="comment[body]" id="body" cols="30" rows="3"
@@ -103,26 +103,27 @@
                     </div>
                     <button class="btn btn-success">Submit</button>
                 </form>
-                <!-- Comments -->
-                <div class="card p-4">
-                    <div class="card-body mb-3">
-                        <div class="media mb-3">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80"
-                                class="d-block img-w rounded-circle" alt="">
-                            <div class="media-body ml-3">
-                                <%= builds.user %>
-                                <div class="text-muted small">1 days ago</div>
-                            </div>
+            </div>
+            <!-- Comments -->
+            <% for(let comment of builds.comments) { %>
+            <div class="card p-4 mt-2 mb-2">
+                <div class="card-body mb-3">
+                    <div class="media mb-3">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80"
+                            class="d-block img-w rounded-circle" alt="">
+                        <div class="media-body ml-3">
+                            <%= builds.user %>
+                            <div class="text-muted small">1 days ago</div>
                         </div>
-                        <div class="card-subtitle mt-2 mb-3 text-muted">Commented:</div>
-                        <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus iusto
-                            facere a possimus tempore error, perferendis vel deleniti officia sunt.</p>
-                        <form action="" method="POST">
-                            <button class="btn btn-sm btn-danger">Delete</button>
-                        </form>
                     </div>
+                    <div class="card-subtitle mt-2 mb-3 text-muted">Commented:</div>
+                    <p class="card-text"><%= comment.body %> </p>
+                    <form action="/pages/<%=builds._id%>/comments/<%=comment._id%>?methodfield=DELETE" method="POST">
+                        <button class="btn btn-sm btn-danger">Delete</button>
+                    </form>
                 </div>
             </div>
+            <% } %>
         </div>
     </div>
 </div>

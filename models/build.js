@@ -32,6 +32,12 @@ const buildSchema = new Schema({
     psu: String,
     case: String,
 
+    // comments
+    comments: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Comment'
+    }]
+
 })
 
 // export build schema

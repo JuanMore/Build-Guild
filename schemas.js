@@ -19,3 +19,10 @@ module.exports.buildSchema = Joi.object({
         psu: Joi.string().required(),
     }).required()
 })
+
+// Comment schema 
+module.exports.commentSchema = Joi.object({
+    comment: Joi.object({
+        body: Joi.string().required()
+    }).required()
+})
