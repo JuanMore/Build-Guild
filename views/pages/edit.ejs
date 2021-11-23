@@ -15,56 +15,60 @@
     <div class="row mx-auto mt-5">
         <h2>Edit your build submission</h2>
         <div class="col-lg-6">
-            <form action="/pages/<%=builds._id%>?methodfield=PUT" method="POST">
+            <form action="/pages/<%=builds._id%>?methodfield=PUT" class="form-validation" method="POST" novalidate>
                 <div class="">
                     <label class="form-label mt-2" for="name">Name: </label>
-                    <input class="form-control" type="text" id="name" name="pages[user]" value="<%=builds.user%>">
+                    <input class="form-control" type="text" id="name" name="pages[user]" value="<%=builds.user%>"
+                        required>
                 </div>
                 <div class="">
                     <label class="form-label mt-2" for="title">Build Name: </label>
-                    <input class="form-control" type="text" id="title" name="pages[title]" value="<%= builds.title %>">
+                    <input class="form-control" type="text" id="title" name="pages[title]" value="<%= builds.title %>"
+                        required>
                 </div>
                 <div class="">
                     <label class="form-label mt-2" for="description">Description:</label>
                     <input class="form-control" type="text" id="description" name="pages[description]"
-                        value="<%= builds.description %>">
+                        value="<%= builds.description %>" required>
                 </div>
                 <p class="mt-2">RGB Lighting:</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="pages[rgb]" id="rgb" value="Yes">
+                    <input class="form-check-input" type="radio" name="pages[rgb]" id="rgb" value="Yes" required>
                     <label class="form-check-label" for="rgb">
                         Yes
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="pages[rgb]" id="rgb" value="No">
+                    <input class="form-check-input" type="radio" name="pages[rgb]" id="rgb" value="No" required>
                     <label class="form-check-label" for="rgb">
                         No
                     </label>
                 </div>
                 <p class="mt-2">Cooling:</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="pages[cooling]" id="cooling" value="Air Cooling">
+                    <input class="form-check-input" type="radio" name="pages[cooling]" id="cooling" value="Air Cooling"
+                        required>
                     <label class="form-check-label" for="cooling">
                         Air Cooling
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="pages[cooling]" id="cooling"
-                        value="Custom Liquid">
+                        value="Custom Liquid" required>
                     <label class="form-check-label" for="cooling">
                         Custom Liquid
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="pages[cooling]" id="cooling" value="AIO Cooling">
+                    <input class="form-check-input" type="radio" name="pages[cooling]" id="cooling" value="AIO Cooling"
+                        required>
                     <label class="form-check-label" for="cooling">
                         AIO Cooling
                     </label>
                 </div>
                 <div class="form-check mb-2">
                     <input class="form-check-input" type="radio" name="pages[cooling]" id="cooling"
-                        value="Passive Cooling">
+                        value="Passive Cooling" required>
                     <label class="form-check-label" for="cooling">
                         Passive Cooling
                     </label>
@@ -73,43 +77,41 @@
         <div class="col-lg-6 col-md-12 col-sm-12 col-sm-4">
             <p class="fw-bold">Hardware:</p>
             <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-sm">CPU</span>
-                <input type="text" class="form-control" name="pages[cpu]" value="<%= builds.cpu %>" aria-label="cpu"
-                    aria-describedby="inputGroup-sizing-sm">
+                <label class="input-group-text form-label" for="cpu" id="cpu">CPU</label>
+                <input type="text" class="form-control" id="cpu" name="pages[cpu]" value="<%=builds.cpu %>" required>
             </div>
             <div class="input-group input-group-sm mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-sm">Motherboard</span>
                 <input type="text" class="form-control" name="pages[motherboard]" value="<%= builds.motherboard %>"
-                    aria-label="motherboard" aria-describedby="inputGroup-sizing-sm">
+                    aria-label="motherboard" aria-describedby="inputGroup-sizing-sm" required>
             </div>
             <div class="input-group input-group-sm mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-sm">Memory</span>
                 <input type="text" class="form-control" name="pages[memory]" value="<%= builds.memory %>"
-                    aria-label="memory" aria-describedby="inputGroup-sizing-sm">
+                    aria-label="memory" aria-describedby="inputGroup-sizing-sm" required>
             </div>
             <div class="input-group input-group-sm mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-sm">Graphics</span>
                 <input type="text" class="form-control" name="pages[graphics]" value="<%= builds.graphics %>"
-                    aria-label="graphics" aria-describedby="inputGroup-sizing-sm">
+                    aria-label="graphics" aria-describedby="inputGroup-sizing-sm" required>
             </div>
             <div class="input-group input-group-sm mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-sm">PSU</span>
                 <input type="text" class="form-control" name="pages[psu]" value="<%= builds.psu %>" aria-label="psu"
-                    aria-describedby="inputGroup-sizing-sm">
+                    aria-describedby="inputGroup-sizing-sm" required>
             </div>
             <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Storage</span>
-                <input type="text" class="form-control" name="pages[storage]" value="<%= builds.storage %>"
-                    aria-label="storage" aria-describedby="inputGroup-sizing-sm">
+                <span class="input-group-text" id="storage">Storage</span>
+                <input type="text" class="form-control" name="pages[storage]" value="<%= builds.storage %>" required>
             </div>
             <div class="input-group input-group-sm mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-sm">Case</span>
                 <input type="text" class="form-control" name="pages[case]" value="<%= builds.case %>" aria-label="case"
-                    aria-describedby="inputGroup-sizing-sm">
+                    aria-describedby="inputGroup-sizing-sm" required>
             </div>
             <div class="mb-3">
                 <label for="formFileMultiple" class="form-label">Upload Images</label>
-                <input type="file" class="form-control" id="formFileMultiple" name="pages[image]">
+                <input type="file" class="form-control" id="formFileMultiple" name="pages[image]" required>
             </div>
             <div class="invalid-feedback">
                 <p class="alert">Show off your build with images, otherwise its kind of
@@ -120,6 +122,5 @@
         </div>
         <button class="btn btn-dark" style="width: 50%;">Update Build</button>
         </form>
-    </div>
     </div>
 </section>

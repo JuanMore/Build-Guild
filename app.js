@@ -6,7 +6,10 @@ const express = require('express')
 const mongoose = require('mongoose')
 const ejsMate = require('ejs-mate')
 const morgan = require('morgan')
-
+const session = require('express-session')
+const flash = require('connect-flash')
+const pages = require('./routes/pages')
+const comments = require('./routes/comments')
 // Error handlers
 const catchErr = require('./helpers/wrapAsync')
 const errHandler = require('./helpers/errorhandling')
@@ -45,6 +48,17 @@ db.once('open', () => {
 app.use(express.static(__dirname + '/public'));
 app.set('views', path.join(__dirname, 'views'));
 
+// session config
+const sessionConfig = {
+    secret: 'Shady99',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+    }
+}
 app.set('view engine', 'ejs')
 app.engine('ejs', ejsMate);
 // parse body
@@ -54,6 +68,10 @@ app.use(express.urlencoded({
 
 
 app.use(methodOverride('methodfield'))
+app.use(session(sessionConfig))
+app.use(flash())
+
+
 
 /******** Middleware  *******/
 // define validation function
@@ -61,7 +79,7 @@ const validateBuilds = (req, res, next) => {
     // pass data through to schema
     const {
         error
-    } = buildSchema.validate(req.body)
+    } = buildSchema.validate(req.pages)
     // if there's an error - pass error to our error handler
     // with details
     if (error) {
@@ -90,86 +108,14 @@ app.get('/', (req, res) => {
     res.render('home')
 })
 
-app.get('/pages', catchErr(async (req, res) => {
-    const builds = await Build.find({})
-    res.render('pages/index', {
-        builds
-    });
-}))
+app.use((req, res, next) => {
+    res.locals.success = req.flash('success')
+    res.locals.error = req.flash('error')
+    next()
+})
 
-app.get('/pages/new', catchErr(async (req, res) => {
-    const builds = await Build.find({})
-    res.render('pages/new', {
-        builds
-    })
-}))
-
-
-app.post('/pages', validateBuilds, catchErr(async (req, res) => {
-    const builds = new Build(req.body.pages)
-    await builds.save()
-    res.redirect(`/pages/${builds._id}`)
-}))
-
-app.get('/pages/:id', catchErr(async (req, res) => {
-    // pass in id from req . -> params -> .id
-    const builds = await Build.findById(req.params.id).populate('comments')
-    res.render('pages/show', {
-        builds
-    })
-}))
-
-
-app.get('/pages/:id/edit', validateBuilds, catchErr(async (req, res) => {
-    const builds = await Build.findById(req.params.id)
-    res.render('pages/edit', {
-        builds
-    })
-}))
-
-app.put('/pages/:id', validateBuilds, catchErr(async (req, res) => {
-    const {
-        id
-    } = req.params
-    const builds = await Build.findByIdAndUpdate(id, {
-        ...req.body.pages
-    })
-    res.redirect(`/pages/${builds._id}`)
-}))
-
-app.post('/pages/:id', catchErr(async (req, res) => {
-    const {
-        id
-    } = req.params
-    await Build.findByIdAndDelete(id)
-    res.redirect(`/pages`)
-}))
-
-app.post('/pages/:id/comments', valComment, catchErr(async (req, res) => {
-    const builds = await Build.findById(req.params.id)
-    const comment = new Comment(req.body.comment)
-    // push comment to our comment schema
-    builds.comments.push(comment)
-    await comment.save()
-    await builds.save()
-    // redirect to show - display comment
-    res.redirect(`/pages/${builds._id}`)
-}))
-
-app.delete('/pages/:id/comments/:commentId', catchErr(async (req, res) => {
-    const {
-        id,
-        commentId
-    } = req.params
-    // pull from comment array
-    await Comment.findByIdAndUpdate(id, {
-        $pull: {
-            comment: commentId
-        }
-    })
-    await Comment.findByIdAndDelete(commentId)
-    res.redirect(`/pages/${id}`)
-}))
+app.use('/pages', pages)
+app.use('/pages/:id/comments', comments)
 
 app.all('*', (req, res, next) => {
     res.send('Page Not Found:', 404)

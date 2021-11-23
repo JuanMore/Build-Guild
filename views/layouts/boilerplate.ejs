@@ -26,6 +26,7 @@
     </button>
     <%- include('../partials/navbar') %>
     <main class="container-fluid">
+        <%- include('../partials/flash') %>
         <%- body %>
     </main>
 
@@ -47,28 +48,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bs-custom-file-input/1.1.1/bs-custom-file-input.min.js">
     </script>
-    <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (function () {
-            'use strict'
+    <script src="/js/formVal.js"></script>
 
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            const forms = document.querySelectorAll('.form-validation')
-
-            // Loop over them and prevent submission
-            Array.from(forms)
-                .forEach(function (form) {
-                    form.addEventListener('submit', function (event) {
-                        if (!form.checkValidity()) {
-                            event.preventDefault()
-                            event.stopPropagation()
-                        }
-
-                        form.classList.add('was-validated')
-                    }, false)
-                })
-        })()
-    </script>
 </body>
 
 </html>

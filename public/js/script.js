@@ -1,5 +1,3 @@
-console.log('Hello')
-
 // Grab button
 const scrollUp = document.querySelector('#btn-up')
 
