@@ -238,6 +238,12 @@ footer .list-item:hover {
     }
 }
 
+@media (max-width: 480px) {
+    .container-fluid {
+        padding: 0;
+    }
+}
+
 @media(max-width: 500px) {
 
     .bg-image h5,
@@ -255,7 +261,7 @@ footer .list-item:hover {
     }
 
     #small-cards {
-        padding: 0 50px;
+        padding: 0 20px;
     }
 
     .card-footer a.btn.btn-primary {
@@ -267,6 +273,9 @@ footer .list-item:hover {
 }
 
 @media(max-width: 1200px) {
+    .container-fluid {
+        padding: 0;
+    }
 
     .bg-image h5 {
         width: 100%;
@@ -279,6 +288,6 @@ footer .list-item:hover {
     }
 
     #small-cards {
-        padding: 0 50px;
+        padding: 0 20px;
     }
 }
