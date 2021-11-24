@@ -24,10 +24,6 @@ body {
 /* Utils */
 .container-fluid {
     width: 100%;
-    padding-right: 20px;
-    padding-left: 20px;
-    margin-right: auto;
-    margin-left: auto;
 }
 
 .container-fluid {
@@ -234,13 +230,14 @@ footer .list-item:hover {
     }
 
     #small-cards {
-        padding: 0 50px;
+        padding: 0 20px;
     }
 }
 
 @media (max-width: 480px) {
     .container-fluid {
-        padding: 0;
+        padding-right: 0 !important;
+        margin-right: 0 !important;
     }
 }
 
@@ -261,7 +258,7 @@ footer .list-item:hover {
     }
 
     #small-cards {
-        padding: 0 20px;
+        padding: 0 10px;
     }
 
     .card-footer a.btn.btn-primary {
@@ -273,9 +270,6 @@ footer .list-item:hover {
 }
 
 @media(max-width: 1200px) {
-    .container-fluid {
-        padding: 0;
-    }
 
     .bg-image h5 {
         width: 100%;
@@ -287,7 +281,7 @@ footer .list-item:hover {
         padding: 10px;
     }
 
-    #small-cards {
+    /* #small-cards {
         padding: 0 20px;
-    }
+    } */
 }

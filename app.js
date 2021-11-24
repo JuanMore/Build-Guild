@@ -8,8 +8,9 @@ const ejsMate = require('ejs-mate')
 const morgan = require('morgan')
 const session = require('express-session')
 const flash = require('connect-flash')
-const pages = require('./routes/pages')
-const comments = require('./routes/comments')
+const pageRoutes = require('./routes/pages')
+const commentsRoutes = require('./routes/comments')
+const authRoutes = require('./routes/auth')
 // Error handlers
 const catchErr = require('./helpers/wrapAsync')
 const errHandler = require('./helpers/errorhandling')
@@ -19,12 +20,15 @@ const {
 } = require('./schemas.js')
 const Build = require('./models/build')
 const Comment = require('./models/comments')
+const User = require('./models/user')
 
 const app = express()
 const path = require('path');
 
 // model schema
 const methodOverride = require('method-override')
+const passport = require('passport')
+const LocalPassport = require('passport-local')
 
 // Connect to mongoose
 // mongoose.connect('mongodb://localhost:27017/BuildGuild')
@@ -71,37 +75,17 @@ app.use(methodOverride('methodfield'))
 app.use(session(sessionConfig))
 app.use(flash())
 
+app.use(passport.initialize())
+app.use(passport.session())
+
+passport.use(new LocalPassport(User.authenticate()))
+
+// store user in session
+passport.serializeUser(User.serializeUser())
+// get user out of session
+passport.deserializeUser(User.deserializeUser())
 
 
-/******** Middleware  *******/
-// define validation function
-const validateBuilds = (req, res, next) => {
-    // pass data through to schema
-    const {
-        error
-    } = buildSchema.validate(req.pages)
-    // if there's an error - pass error to our error handler
-    // with details
-    if (error) {
-        const msg = error.details.map(el => el.message).join(',')
-        throw new errHandler(msg, 400)
-    } else {
-        next()
-    }
-}
-
-// Commment middleware/validation
-const valComment = (req, res, next) => {
-    const {
-        error
-    } = commentSchema.validate(req.body)
-    if (error) {
-        const msg = error.details.map(el => el.message).join(',')
-        throw new errHandler(msg, 400)
-    } else {
-        next()
-    }
-}
 
 
 app.get('/', (req, res) => {
@@ -114,8 +98,10 @@ app.use((req, res, next) => {
     next()
 })
 
-app.use('/pages', pages)
-app.use('/pages/:id/comments', comments)
+
+app.use('/', authRoutes)
+app.use('/pages', pageRoutes)
+app.use('/pages/:id/comments', commentsRoutes)
 
 app.all('*', (req, res, next) => {
     res.send('Page Not Found:', 404)
