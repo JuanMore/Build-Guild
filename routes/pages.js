@@ -3,10 +3,13 @@ const router = express.Router()
 const catchErr = require('../helpers/wrapAsync')
 const errHandler = require('../helpers/errorhandling')
 const Build = require('../models/build')
-
+const {
+    isAuth
+} = require('../middleware')
 const {
     buildSchema,
 } = require('../schemas.js')
+const passport = require('passport')
 
 const validateBuilds = (req, res, next) => {
     // pass data through to schema
@@ -32,7 +35,7 @@ router.get('/', catchErr(async (req, res) => {
     });
 }))
 
-router.get('/new', catchErr(async (req, res) => {
+router.get('/new', isAuth, catchErr(async (req, res) => {
     const builds = await Build.find({})
     res.render('pages/new', {
         builds
@@ -40,7 +43,7 @@ router.get('/new', catchErr(async (req, res) => {
 }))
 
 
-router.post('/', validateBuilds, catchErr(async (req, res) => {
+router.post('/', isAuth, validateBuilds, catchErr(async (req, res) => {
     const builds = new Build(req.body.pages)
     await builds.save()
     req.flash('success', 'New build posted.')

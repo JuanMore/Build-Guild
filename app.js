@@ -93,6 +93,8 @@ app.get('/', (req, res) => {
 })
 
 app.use((req, res, next) => {
+    // all templates should have access to current user
+    res.locals.currentUser = req.user
     res.locals.success = req.flash('success')
     res.locals.error = req.flash('error')
     next()
