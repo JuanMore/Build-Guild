@@ -3,10 +3,17 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: #f6fcfc !important;
+    background: #eee;
     line-height: 1.7;
-
 }
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
 
 .card-footer a,
 a {
@@ -15,10 +22,6 @@ a {
 
 ul {
     list-style-type: none;
-}
-
-body {
-    background: #eee;
 }
 
 /* Utils */
