@@ -32,11 +32,13 @@ main {
 
 .navbar-brand {
     font-size: 22px;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .nav-items {
-    align-items: flex-end;
+    align-items: flex-start;
     justify-items: end;
     margin: 0;
 }
@@ -60,4 +62,24 @@ main {
 .btn-secondary:hover {
     opacity: 0.9;
     color: #333;
+}
+
+@media(max-width: 768px) {
+
+    .navbar-brand,
+    .nav-items {
+        margin: auto;
+    }
+
+    .btn-lg {
+        padding: 1rem;
+    }
+}
+
+@media(max-width: 500px) {
+
+    .navbar-brand,
+    .nav-items {
+        margin: auto;
+    }
 }
