@@ -18,9 +18,12 @@ router.post('/register', catchErr(async (req, res) => {
             email,
             username
         })
+        //register user save to db and hash password 
         const newUser = await User.register(user, password)
+        // if err return next(err) - log that user in
         req.login(newUser, err => {
             if (err) return next(err)
+            // otherwise
             req.flash('success', `Welcome to Build Guild, ${user.username}.`)
             res.redirect('/pages')
         })
@@ -44,7 +47,9 @@ router.post('/login', passport.authenticate('local', {
     // if authenticated
 }), (req, res) => {
     req.flash('success', `Welcome back!`)
-    res.redirect('/pages')
+    const redirectUrl = req.session.returnTo || '/pages'
+    delete req.session.returnTo
+    res.redirect(redirectUrl)
 })
 
 router.get('/logout', (req, res) => {

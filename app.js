@@ -93,6 +93,10 @@ app.get('/', (req, res) => {
 })
 
 app.use((req, res, next) => {
+    if (!['/login', '/'].includes(req.originalUrl)) {
+        req.session.returnTo = req.originalUrl;
+    }
+
     // all templates should have access to current user
     res.locals.currentUser = req.user
     res.locals.success = req.flash('success')
