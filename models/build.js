@@ -31,13 +31,16 @@ const buildSchema = new Schema({
     storage: String,
     psu: String,
     case: String,
-
+    // author
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
     // comments
     comments: [{
         type: Schema.Types.ObjectId,
         ref: 'Comment'
     }]
-
 })
 
 // export build schema

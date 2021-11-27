@@ -53,7 +53,8 @@ router.post('/', isAuth, validateBuilds, catchErr(async (req, res) => {
 
 router.get('/:id', catchErr(async (req, res) => {
     // pass in id from req . -> params -> .id
-    const builds = await Build.findById(req.params.id).populate('comments')
+    const builds = await Build.findById(req.params.id).populate('comments').populate('author')
+    console.log(builds.author)
     if (!builds) {
         req.flash('error', 'Error: Cannot find that build.')
         return res.redirect('/pages')

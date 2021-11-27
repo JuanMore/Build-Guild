@@ -29,6 +29,7 @@ const seedDb = async () => {
         const random3 = Math.floor(Math.random() * 3)
         // set new profiles from our Build model
         const profile = new Build({
+            author: '619bd5276ff4cc4f4c93e09c',
             user: `${builders[random3].user}`,
             description: `${builders[random3].description}`,
             title: `${sample(descriptors)}: ${sample(adjective)}`
