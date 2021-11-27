@@ -42,15 +42,17 @@ router.get('/new', isAuth, catchErr(async (req, res) => {
     })
 }))
 
-
+// New build route
 router.post('/', isAuth, validateBuilds, catchErr(async (req, res) => {
     const builds = new Build(req.body.pages)
+    builds.author = req.user._id
     await builds.save()
     req.flash('success', 'New build posted.')
 
     res.redirect(`/pages/${builds._id}`)
 }))
 
+// Build show 
 router.get('/:id', catchErr(async (req, res) => {
     // pass in id from req . -> params -> .id
     const builds = await Build.findById(req.params.id).populate('comments').populate('author')
@@ -64,25 +66,35 @@ router.get('/:id', catchErr(async (req, res) => {
     })
 }))
 
-
-router.get('/:id/edit', validateBuilds, catchErr(async (req, res) => {
+// Edit route 
+router.get('/:id/edit', isAuth, validateBuilds, catchErr(async (req, res) => {
     const builds = await Build.findById(req.params.id)
     res.render('pages/edit', {
         builds
     })
 }))
 
-router.put('/:id', validateBuilds, catchErr(async (req, res) => {
+// Edit put request
+router.put('/:id', isAuth, validateBuilds, catchErr(async (req, res) => {
     const {
         id
     } = req.params
-    const builds = await Build.findByIdAndUpdate(id, {
+    // find the build
+    const builds = await Build.findById(id)
+    // check to see if logged in user owns this build
+    if (!builds.author.equals(req.user._id)) {
+        req.flash('error', 'Permission denied, you can\'t edit this build.')
+        return res.redirect(`/pages/${id}`)
+    }
+    // if loggen in user does own build / then update
+    const build = await Build.findByIdAndUpdate(id, {
         ...req.body.pages
     })
     res.redirect(`/pages/${builds._id}`)
 }))
 
-router.post('/:id', catchErr(async (req, res) => {
+// Delete a build post
+router.post('/:id', isAuth, catchErr(async (req, res) => {
     const {
         id
     } = req.params

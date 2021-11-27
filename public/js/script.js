@@ -18,7 +18,7 @@ function scrollDown() {
     }
 }
 
-// When user clicks button, scrol back to top
+// When user clicks button, scroll back to top
 scrollUp.addEventListener('click', backToTop);
 
 function backToTop() {
