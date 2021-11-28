@@ -1,33 +1,15 @@
 const express = require('express')
 const router = express.Router()
 const catchErr = require('../helpers/wrapAsync')
-const errHandler = require('../helpers/errorhandling')
 const Build = require('../models/build')
 const {
-    isAuth
+    isAuth,
+    isAuthor,
+    validateBuilds
 } = require('../middleware')
-const {
-    buildSchema,
-} = require('../schemas.js')
 const passport = require('passport')
 
-const validateBuilds = (req, res, next) => {
-    // pass data through to schema
-    const {
-        error
-    } = buildSchema.validate(req.pages)
-    // if there's an error - pass error to our error handler
-    // with details
-    if (error) {
-        const msg = error.details.map(el => el.message).join(',')
-        throw new errHandler(msg, 400)
-    } else {
-        next()
-    }
-}
-
 // Pages routes
-
 router.get('/', catchErr(async (req, res) => {
     const builds = await Build.find({})
     res.render('pages/index', {
@@ -56,9 +38,8 @@ router.post('/', isAuth, validateBuilds, catchErr(async (req, res) => {
 router.get('/:id', catchErr(async (req, res) => {
     // pass in id from req . -> params -> .id
     const builds = await Build.findById(req.params.id).populate('comments').populate('author')
-    console.log(builds.author)
     if (!builds) {
-        req.flash('error', 'Error: Cannot find that build.')
+        req.flash('error', 'Error: Cannot find that build. It may have been removed by the author or admin.')
         return res.redirect('/pages')
     }
     res.render('pages/show', {
@@ -67,34 +48,35 @@ router.get('/:id', catchErr(async (req, res) => {
 }))
 
 // Edit route 
-router.get('/:id/edit', isAuth, validateBuilds, catchErr(async (req, res) => {
-    const builds = await Build.findById(req.params.id)
+router.get('/:id/edit', isAuth, isAuthor, catchErr(async (req, res) => {
+    const {
+        id
+    } = req.params
+    const builds = await Build.findById(id)
+    if (!builds) {
+        req.flas('error', 'Build not found.')
+        return res.redirect('/pages')
+    }
     res.render('pages/edit', {
         builds
     })
 }))
 
 // Edit put request
-router.put('/:id', isAuth, validateBuilds, catchErr(async (req, res) => {
+router.put('/:id', isAuth, isAuthor, validateBuilds, catchErr(async (req, res) => {
     const {
         id
     } = req.params
     // find the build
-    const builds = await Build.findById(id)
-    // check to see if logged in user owns this build
-    if (!builds.author.equals(req.user._id)) {
-        req.flash('error', 'Permission denied, you can\'t edit this build.')
-        return res.redirect(`/pages/${id}`)
-    }
-    // if loggen in user does own build / then update
-    const build = await Build.findByIdAndUpdate(id, {
+    // if user is authenticated / then update
+    const builds = await Build.findByIdAndUpdate(id, {
         ...req.body.pages
     })
     res.redirect(`/pages/${builds._id}`)
 }))
 
 // Delete a build post
-router.post('/:id', isAuth, catchErr(async (req, res) => {
+router.post('/:id', isAuth, isAuthor, catchErr(async (req, res) => {
     const {
         id
     } = req.params
