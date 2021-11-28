@@ -39,8 +39,9 @@
         <div class="col-lg-6 col-md-12">
             <form action="/pages" method="POST" class="form-validation" novalidate>
                 <div class="">
-                    <label class="form-label mt-2" for="name">Name:</label>
-                    <input class="form-control" type="text" id="name" name="pages[user]" value="<%=builds.user%>">
+                    <label class="form-label mt-2" for="name">Username:</label>
+                    <input class="form-control" type="text" id="name" name="pages[user]" value="<%=builds.author%>"
+                        disabled>
                 </div>
                 <div class="">
                     <label class="form-label mt-2" for="title">Build Name: </label>

@@ -22,7 +22,7 @@
                         <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80"
                             class="d-block img-w rounded-circle" alt="">
                         <div class="media-body ml-3">
-                            <%= builds.user %>
+                            <%= builds.author.username %>
                             <div class="text-muted small">1 days ago</div>
                         </div>
                     </div>
@@ -87,6 +87,7 @@
     <div class="row ml-1">
         <div class="col-lg-8">
             <h3>Comments</h3>
+            <% if(currentUser) { %>
             <div class="card">
                 <!-- Comments form -->
                 <form action="/pages/<%=builds._id%>/comments" method="POST" class="p-4">
@@ -101,6 +102,7 @@
                     <button class="btn btn-success">Submit</button>
                 </form>
             </div>
+            <% } %>
             <!-- Comments -->
             <% for(let comment of builds.comments) { %>
             <div class="card p-4 mt-2 mb-2">
@@ -109,15 +111,17 @@
                         <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80"
                             class="d-block img-w rounded-circle" alt="">
                         <div class="media-body ml-3">
-                            <%= builds.user %>
+                            <%= comment.author.username %>
                             <div class="text-muted small">1 days ago</div>
                         </div>
                     </div>
                     <div class="card-subtitle mt-2 mb-3 text-muted">Commented:</div>
                     <p class="card-text"><%= comment.body %> </p>
+                    <% if( currentUser && comment.author.equals(currentUser._id)) {%>
                     <form action="/pages/<%=builds._id%>/comments/<%=comment._id%>?methodfield=DELETE" method="POST">
                         <button class="btn btn-sm btn-danger">Delete</button>
                     </form>
+                    <% } %>
                 </div>
             </div>
             <% } %>

@@ -7,31 +7,17 @@ const errHandler = require('../helpers/errorhandling')
 
 const Build = require('../models/build')
 const Comment = require('../models/comments')
-
-
-// pull our comment schema from schema.js
 const {
-    commentSchema
-} = require('../schemas.js')
-
-// Commment middleware/validation
-const valComment = (req, res, next) => {
-    const {
-        error
-    } = commentSchema.validate(req.body)
-    if (error) {
-        const msg = error.details.map(el => el.message).join(',')
-        throw new errHandler(msg, 400)
-    } else {
-        next()
-    }
-}
+    valComment,
+    isAuth,
+    commentAuth
+} = require('../middleware')
 
 // Comment Routes
-
-router.post('/', valComment, catchErr(async (req, res) => {
+router.post('/', isAuth, valComment, catchErr(async (req, res) => {
     const builds = await Build.findById(req.params.id)
     const comment = new Comment(req.body.comment)
+    comment.author = req.user._id
     // push comment to our comment schema
     builds.comments.push(comment)
     await comment.save()
@@ -40,7 +26,7 @@ router.post('/', valComment, catchErr(async (req, res) => {
     res.redirect(`/pages/${builds._id}`)
 }))
 
-router.delete('/:commentId', catchErr(async (req, res) => {
+router.delete('/:commentId', isAuth, commentAuth, catchErr(async (req, res) => {
     const {
         id,
         commentId

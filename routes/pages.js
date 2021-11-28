@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const catchErr = require('../helpers/wrapAsync')
 const Build = require('../models/build')
+const User = require('../models/user')
 const {
     isAuth,
     isAuthor,
@@ -14,11 +15,13 @@ router.get('/', catchErr(async (req, res) => {
     const builds = await Build.find({})
     res.render('pages/index', {
         builds
-    });
+    })
 }))
 
 router.get('/new', isAuth, catchErr(async (req, res) => {
     const builds = await Build.find({})
+    builds.author = req.user.username
+    console.log(builds.author)
     res.render('pages/new', {
         builds
     })
@@ -37,7 +40,13 @@ router.post('/', isAuth, validateBuilds, catchErr(async (req, res) => {
 // Build show 
 router.get('/:id', catchErr(async (req, res) => {
     // pass in id from req . -> params -> .id
-    const builds = await Build.findById(req.params.id).populate('comments').populate('author')
+    const builds = await Build.findById(req.params.id).populate({
+        // nested populate to populate each author to their comment
+        path: 'comments',
+        populate: {
+            path: 'author'
+        }
+    }).populate('author')
     if (!builds) {
         req.flash('error', 'Error: Cannot find that build. It may have been removed by the author or admin.')
         return res.redirect('/pages')
@@ -52,7 +61,7 @@ router.get('/:id/edit', isAuth, isAuthor, catchErr(async (req, res) => {
     const {
         id
     } = req.params
-    const builds = await Build.findById(id)
+    const builds = await Build.findById(id).populate('author')
     if (!builds) {
         req.flas('error', 'Build not found.')
         return res.redirect('/pages')
@@ -76,7 +85,7 @@ router.put('/:id', isAuth, isAuthor, validateBuilds, catchErr(async (req, res) =
 }))
 
 // Delete a build post
-router.post('/:id', isAuth, isAuthor, catchErr(async (req, res) => {
+router.delete('/:id', catchErr(async (req, res) => {
     const {
         id
     } = req.params

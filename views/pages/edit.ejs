@@ -18,8 +18,8 @@
             <form action="/pages/<%=builds._id%>?methodfield=PUT" class="form-validation" method="POST" novalidate>
                 <div class="">
                     <label class="form-label mt-2" for="name">Name: </label>
-                    <input class="form-control" type="text" id="name" name="pages[user]" value="<%=builds.user%>"
-                        required>
+                    <input class="form-control" type="text" id="name" name="pages[user]"
+                        value="<%=builds.author.username%>" required disabled>
                 </div>
                 <div class="">
                     <label class="form-label mt-2" for="title">Build Name: </label>
