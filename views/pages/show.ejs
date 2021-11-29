@@ -15,7 +15,7 @@
 
 <div class="container mt-2" id="build-posts-show">
     <div class="row d-flex mx-auto">
-        <div class="col-lg-4 col-md-6 col-sm-6 mt-5">
+        <div class="col-lg-4 col-md-6 col-md-6 mt-5">
             <div class="card mb-4">
                 <div class="card-body">
                     <div class="media mb-3">
@@ -57,30 +57,52 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6 mt-5">
-            <p>
-                RGB Lighting: <%= builds.rgb %>
-                <br>
-                Cooling: <%= builds.cooling %>
-                <br>
-                CPU: <%= builds.cpu %>
-                <br>
-                Motherboard: <%= builds.motherboard %>
-                <br>
-                Graphics: <%= builds.graphics %>
-                <br>
-                Storage: <%= builds.storage %>
-                <br>
-                PSU: <%= builds.psu %>
-                <br>
-                Case: <%= builds.case %>
 
+        <!-- Show Specs -->
+        <div class="col-lg-6 col-md-4 mt-5 align-items-center ml-auto">
+            <table class="table table-dark table-striped">
+                <h3>Full specs</h3>
 
-
-
-            </p>
+                <th scope="col"><%= builds.title %>
+                <th scope="col">By <%= builds.author.username %>
+                    <tbody>
+                        <tr>
+                            <th scope="row">RGB</th>
+                            <td><%= builds.rgb %></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Cooling</th>
+                            <td><%= builds.cooling %></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">CPU</th>
+                            <td><%= builds.cpu %></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Motherboard</th>
+                            <td><%= builds.motherboard %></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Graphics</th>
+                            <td><%= builds.graphics %></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Storage</th>
+                            <td><%= builds.storage %></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">PSU</th>
+                            <td><%= builds.psu %></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Case</th>
+                            <td><%= builds.case %></td>
+                        </tr>
+                    </tbody>
+            </table>
         </div>
     </div>
+</div>
 </div>
 
 <div class="container mt-2">
