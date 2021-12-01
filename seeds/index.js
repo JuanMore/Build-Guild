@@ -32,7 +32,25 @@ const seedDb = async () => {
             author: '619bd5276ff4cc4f4c93e09c',
             user: `${builders[random3].user}`,
             description: `${builders[random3].description}`,
-            title: `${sample(descriptors)}: ${sample(adjective)}`
+            title: `${sample(descriptors)}: ${sample(adjective)}`,
+            // seeds images - source from unsplash
+            images: [{
+                    url: 'https://res.cloudinary.com/moreno-cloud/image/upload/v1638344957/BuildGuild/qncwcqldki1qbjcedl2f.jpg',
+                    filename: 'BuildGuild/qncwcqldki1qbjcedl2f',
+                },
+                {
+                    url: 'https://res.cloudinary.com/moreno-cloud/image/upload/v1638344957/BuildGuild/nbrzjphf2rg0mrujph7l.jpg',
+                    filename: 'BuildGuild/nbrzjphf2rg0mrujph7l',
+                },
+                {
+                    url: 'https://res.cloudinary.com/moreno-cloud/image/upload/v1638344957/BuildGuild/ts47kr1fu3jwxtemyyo2.jpg',
+                    filename: 'BuildGuild/ts47kr1fu3jwxtemyyo2',
+                },
+                {
+                    url: 'https://res.cloudinary.com/moreno-cloud/image/upload/v1638344957/BuildGuild/mcev5urpryxp8ooaiyrl.jpg',
+                    filename: 'BuildGuild/mcev5urpryxp8ooaiyrl',
+                }
+            ]
         })
         // save in mongo
         await profile.save()

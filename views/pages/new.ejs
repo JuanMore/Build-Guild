@@ -37,7 +37,7 @@
     <div class="row mx-auto mt-5">
         <h2>New build submission form</h2>
         <div class="col-lg-6 col-md-12">
-            <form action="/pages" method="POST" class="form-validation" novalidate>
+            <form action="/pages" method="POST" class="form-validation" enctype="multipart/form-data" novalidate>
                 <div class="">
                     <label class="form-label mt-2" for="name">Confirm username:</label>
                     <input class="form-control" type="text" id="name" name="pages[user]"
@@ -138,7 +138,7 @@
             </div>
             <div class="mb-3">
                 <label for="formFileMultiple" class="form-label">Upload Images</label>
-                <input type="file" class="form-control" id="formFileMultiple" name="pages[image]" required>
+                <input type="file" class="form-control" id="formFileMultiple" name="image" multiple required>
                 <div class="invalid-feedback">
                     Show off your build with images, otherwise this is all kind of
                     pointless?

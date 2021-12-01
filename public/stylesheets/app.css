@@ -182,6 +182,12 @@ ul {
     display: flex;
 }
 
+#build-imgs img {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 
 .card-footer a.btn.btn-primary {
     width: 20%;

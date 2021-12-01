@@ -19,8 +19,16 @@ module.exports.newBuild = async (req, res) => {
 
 module.exports.createBuild = async (req, res) => {
     const builds = new Build(req.body.pages)
+    builds.images =
+        // map over array of images and add them to build
+        req.files.map(f => ({
+            // only take path and filename and puts that into an array n. images
+            url: f.path,
+            filename: f.filename
+        }))
     builds.author = req.user._id
     await builds.save()
+    console.log(builds)
     req.flash('success', 'New build posted.')
 
     res.redirect(`/pages/${builds._id}`)

@@ -15,7 +15,10 @@ const buildSchema = new Schema({
     // Build Type
     type: String,
     status: String,
-    image: String,
+    images: [{
+        url: String,
+        filename: String
+    }],
     // User name
     user: String,
     // build description

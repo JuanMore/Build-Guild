@@ -11,13 +11,20 @@ const {
     validateBuilds
 } = require('../middleware')
 const passport = require('passport')
+const {
+    storage
+} = require('../cloud')
+const multer = require('multer')
+const upload = multer({
+    storage
+})
 
 // Pages routes from controllers
 router.route('/')
 
     .get(catchErr(pages.index))
     // New build route
-    .post(isAuth, validateBuilds, catchErr(pages.createBuild))
+    .post(isAuth, validateBuilds, upload.array('image'), catchErr(pages.createBuild))
 
 router.get('/new', isAuth, catchErr(pages.newBuild))
 
