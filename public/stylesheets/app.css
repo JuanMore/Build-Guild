@@ -183,10 +183,10 @@ ul {
 }
 
 
-
 .card-footer a.btn.btn-primary {
+    width: 20%;
     float: right;
-    padding: 10px;
+    padding: 5px;
     margin-right: 5px;
 }
 
@@ -198,14 +198,21 @@ ul {
     background-position: center;
 }
 
+.btn-login {
+    padding: 20px;
+}
+
 .btn-google {
     color: #fff;
     background-color: #ea4335;
+    padding: 20px;
 }
 
 .btn-facebook {
     color: #fff;
     background-color: #3b5998;
+    padding: 20px;
+
 }
 
 .btn-google:hover,
@@ -256,6 +263,22 @@ footer .list-item:hover {
 
     .bg-image p {
         font-size: 14px;
+    }
+
+
+    .card-footer .btn-primary {
+        margin: 5px 0;
+        width: 100%;
+    }
+
+    .card-footer {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .card-footer .btn-primary {
+        font-size: 10px;
+        margin-left: 8px;
     }
 
 }
@@ -312,7 +335,14 @@ footer .list-item:hover {
         padding: 0;
     }
 
-    /* #small-cards {
-        padding: 0 20px;
-    } */
+    .card-footer .btn-group-sm>.btn,
+    .btn-sm {
+        padding: 1rem;
+    }
+
+    .card-footer .btn-primary {
+        width: 25%;
+        font-size: 10px;
+        margin-left: 8px;
+    }
 }

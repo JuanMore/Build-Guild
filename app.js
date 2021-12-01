@@ -110,7 +110,7 @@ app.use('/pages', pageRoutes)
 app.use('/pages/:id/comments', commentsRoutes)
 
 app.all('*', (req, res, next) => {
-    res.send('Page Not Found:', 404)
+    res.status(404).send('Page Not Found:', 404)
 })
 
 app.use((err, req, res, next) => {

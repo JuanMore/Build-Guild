@@ -47,7 +47,7 @@
                         <strong>200 </strong> <i class="fas fa-comments"></i></small>
                     </a>
                     <% if( currentUser && builds.author.equals(currentUser._id)) {%>
-                    <a href="/pages/<%= builds._id %>/edit" class="ml-3 mr-2 btn-sm btn-primary">Edit
+                    <a href="/pages/<%= builds._id %>/edit" class="ml-3 mr-2 btn-sm btn-info">Edit
                     </a>
                     <form class="d-inline-block" action="/pages/<%=builds._id%>?_method=DELETE" method="POST"
                         class="validated-form" novalidate>

@@ -68,7 +68,7 @@
 
 <div class="container" id="build-posts">
     <div class="row d-flex flex-column">
-        <div class="col-md-5 mt-5 mx-auto">
+        <div class="col-lg-5 col-md-8 col-sm-10 col-sm-8 mt-5 mx-auto">
             <h3 class="text-left text-muted">View Builds: </h3>
             <% for (let build of builds) { %>
             <div class="card mb-4">
@@ -103,9 +103,8 @@
                         <strong>200 </strong> <i class="fas fa-comments"></i></small>
                     </a>
                     <a href="/pages/<%= build._id %>/edit" class="btn btn-primary">Edit
-                        Build
                     </a>
-                    <a href="/pages/<%= build._id %>" class="btn btn-primary">View Build
+                    <a href="/pages/<%= build._id %>" class="btn btn-primary">View
                     </a>
                 </div>
             </div>
