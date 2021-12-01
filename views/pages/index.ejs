@@ -102,8 +102,11 @@
                     <a href="#" class="d-inline-block text-muted ml-2">
                         <strong>200 </strong> <i class="fas fa-comments"></i></small>
                     </a>
+                    <% if( currentUser && builds.author.equals(currentUser._id)) {%>
                     <a href="/pages/<%= build._id %>/edit" class="btn btn-primary">Edit
                     </a>
+                    <% } %>
+
                     <a href="/pages/<%= build._id %>" class="btn btn-primary">View
                     </a>
                 </div>
