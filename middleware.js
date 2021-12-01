@@ -38,7 +38,7 @@ module.exports.isAuthor = async (req, res, next) => {
     } = req.params
     const builds = await Build.findById(id)
     // check to see if logged in user owns this build
-    if (!builds.author.equals(req.user_id)) {
+    if (!builds.author.equals(req.user._id)) {
         req.flash('error', 'Permission denied, you can\'t edit this build.')
         return res.redirect(`/pages/${id}`)
     }

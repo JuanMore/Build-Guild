@@ -13,23 +13,26 @@ const {
 const passport = require('passport')
 
 // Pages routes from controllers
-router.get('/', catchErr(pages.index))
+router.route('/')
+
+    .get(catchErr(pages.index))
+    // New build route
+    .post(isAuth, validateBuilds, catchErr(pages.createBuild))
 
 router.get('/new', isAuth, catchErr(pages.newBuild))
 
-// New build route
-router.post('/', isAuth, validateBuilds, catchErr(pages.createBuild))
 
-// Build show 
-router.get('/:id', catchErr(pages.displayBuild))
+router.route('/:id')
+    // Build show 
+    .get(catchErr(pages.displayBuild))
+
+    // Delete a build post
+    .delete(catchErr(pages.destroyBuild))
+
+    // Edit put request
+    .put(isAuth, isAuthor, validateBuilds, catchErr(pages.updateBuild))
 
 // Edit route 
 router.get('/:id/edit', isAuth, isAuthor, catchErr(pages.renderEdit))
-
-// Edit put request
-router.put('/:id', isAuth, isAuthor, validateBuilds, catchErr(pages.updateBuild))
-
-// Delete a build post
-router.delete('/:id', catchErr(pages.destroyBuild))
 
 module.exports = router
