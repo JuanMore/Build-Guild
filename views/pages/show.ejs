@@ -48,7 +48,7 @@
                     <% if( currentUser && builds.author.equals(currentUser._id)) {%>
                     <a href="/pages/<%= builds._id %>/edit" class="ml-3 mr-2 btn-sm btn-info">Edit
                     </a>
-                    <form class="d-inline-block" action="/pages/<%=builds._id%>?_method=DELETE" method="POST"
+                    <form class="d-inline-block" action="/pages/<%=builds._id%>?methodfield=DELETE" method="POST"
                         class="validated-form" novalidate>
                         <button class="btn-sm btn-danger"><i class="fas fa-trash"></i></button>
                     </form>
