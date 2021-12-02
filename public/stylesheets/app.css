@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montagu+Slab:wght@100;300;400;500;700&family=Roboto:wght@100;300;400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montagu+Slab:wght@100;300;400;500;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,700;1,500&display=swap');
 
+:root {
+    --primary-color: #f89e29
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     background: #eee;
@@ -14,6 +18,9 @@ html {
     overflow-x: hidden;
 }
 
+.card a {
+    text-decoration: none;
+}
 
 .card-footer a,
 a {
@@ -41,6 +48,21 @@ ul {
     bottom: 20px;
     right: 20px;
     /* z-index: 1; */
+}
+
+.btn-main {
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    background-color: var(--primary-color);
+}
+
+.logo-color {
+    color: var(--primary-color);
+}
+
+.card-group i {
+    color: var(--primary-color);
 }
 
 /* Navbar */

@@ -8,7 +8,7 @@
                     talented custom pc builders, like yourself, can post their latest build, comment on them and best of
                     all,
                     show off!</p>
-                <p><a href="#build-posts" class="btn btn-light">Check them out below<i
+                <p><a href="#build-posts" class="btn btn-light btn-main">Check them out below<i
                             class="fas fa-arrow-down mx-2"></i></a>
                 </p>
             </div>
@@ -71,46 +71,48 @@
         <div class="col-lg-5 col-md-8 col-sm-10 col-sm-8 mt-5 mx-auto">
             <h3 class="text-left text-muted">View Builds: </h3>
             <% for (let build of builds) { %>
-            <div class="card mb-4">
-                <div class="card-body">
-                    <div class="media mb-3">
-                        <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80"
-                            class="d-block img-w img-thumbnail rounded-circle" alt="">
-                        <div class="media-body ml-3">
-                            <%= build.user %>
-                            <div class="text-muted small">1 days ago</div>
+            <a href="/pages/<%= build._id %>">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="media mb-3">
+                            <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80"
+                                class="d-block img-w img-thumbnail rounded-circle" alt="">
+                            <div class="media-body ml-3">
+                                <%= build.user %>
+                                <div class="text-muted small">1 days ago</div>
+                            </div>
                         </div>
+
+                        <p>
+                            Build Name: <%= build.title %>
+                            <br>
+                            Description: <%= build.description %>
+
+
+                        </p>
+                        <%if(build.images.length) {%>
+                        <img src="<%=build.images[0].url%>" class="d-block w-100" alt="">
+                        <% } else { %>
+                        <img src="https://res.cloudinary.com/moreno-cloud/image/upload/v1638345836/BuildGuild/hfis5j6qdamskmqzkxnd.jpg"
+                            class="d-block w-100" alt="">
+                        <% } %>
                     </div>
-
-                    <p>
-                        Build Name: <%= build.title %>
-                        <br>
-                        Description: <%= build.description %>
-
-
-                    </p>
-                    <%if(build.images.length) {%>
-                    <img src="<%=build.images[0].url%>" class="d-block w-100" alt="">
-                    <% } else { %>
-                    <img src="https://res.cloudinary.com/moreno-cloud/image/upload/v1638345836/BuildGuild/hfis5j6qdamskmqzkxnd.jpg"
-                        class="d-block w-100" alt="">
-                    <% } %>
+                    <div class="card-footer">
+                        <a href="#" class="d-inline-block text-muted">
+                            <strong>123</strong> <i class="fas fa-eye"></i></small>
+                        </a>
+                        <a href="#" class="d-inline-block text-muted ml-2">
+                            <strong>12</strong> <i class="fas fa-thumbs-up"></i></small>
+                        </a>
+                        <a href="#" class="d-inline-block text-muted ml-2">
+                            <strong>200 </strong> <i class="fas fa-comments"></i></small>
+                        </a>
+                        <a href="/pages/<%= build._id %>" class="btn btn-main btn-primary">View
+                        </a>
+                    </div>
                 </div>
-                <div class="card-footer">
-                    <a href="#" class="d-inline-block text-muted">
-                        <strong>123</strong> <i class="fas fa-eye"></i></small>
-                    </a>
-                    <a href="#" class="d-inline-block text-muted ml-2">
-                        <strong>12</strong> <i class="fas fa-thumbs-up"></i></small>
-                    </a>
-                    <a href="#" class="d-inline-block text-muted ml-2">
-                        <strong>200 </strong> <i class="fas fa-comments"></i></small>
-                    </a>
-                    <a href="/pages/<%= build._id %>" class="btn btn-primary">View
-                    </a>
-                </div>
-            </div>
-            <% } %>
+                <% } %>
+            </a>
 
             <!-- ************** END ***************** -->
         </div>
