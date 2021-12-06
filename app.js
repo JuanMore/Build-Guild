@@ -21,6 +21,7 @@ const {
 const Build = require('./models/build')
 const Comment = require('./models/comments')
 const User = require('./models/user')
+const mongoSanitize = require('express-mongo-sanitize')
 
 const app = express()
 const path = require('path');
@@ -51,6 +52,10 @@ db.once('open', () => {
 
 app.use(express.static(__dirname + '/public'));
 app.set('views', path.join(__dirname, 'views'));
+// mongo injection 
+app.use(mongoSanitize({
+    replaceWith: '_'
+}))
 
 // session config
 const sessionConfig = {
