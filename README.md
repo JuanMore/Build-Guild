@@ -35,6 +35,7 @@ To get the Node server running locally:
 - [mongoose](https://github.com/Automattic/mongoose) - For modeling and mapping MongoDB data to javascript 
 - [method-override](https://github.com/expressjs/method-override) - For using HTTP verbs such as PUT or DELETE in places where the client doesn't support it.
 - [Express-mongo-sanitize](https://github.com/fiznool/express-mongo-sanitize) - A middleware which sanitizes user-supplied data to prevent MongoDB Operator Injection
+- [sanitize-html](https://github.com/apostrophecms/sanitize-html) - Sanitize-html provides a simple HTML sanitizer with a clear API
 - [path](https://github.com/jinder/path) - Node.js path module
 - [joi](https://github.com/sideway/joi) - A powerful schema description language and data validator for JavaScript
 - [cloudinary](https://github.com/cloudinary) - For image management via cloud hosting
