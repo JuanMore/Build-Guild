@@ -33,11 +33,11 @@ router.route('/:id')
     // Build show 
     .get(catchErr(pages.displayBuild))
 
+    // Edit put request
+    .put(isAuth, isAuthor, upload.array('image'), validateBuilds, catchErr(pages.updateBuild))
+
     // Delete a build post
     .delete(catchErr(pages.destroyBuild))
-
-    // Edit put request
-    .put(isAuth, isAuthor, validateBuilds, catchErr(pages.updateBuild))
 
 // Edit route 
 router.get('/:id/edit', isAuth, isAuthor, catchErr(pages.renderEdit))

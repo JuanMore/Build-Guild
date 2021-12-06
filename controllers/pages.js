@@ -1,4 +1,7 @@
 const Build = require('../models/build')
+const {
+    cloudinary
+} = require('../cloud')
 
 
 module.exports.index = async (req, res) => {
@@ -75,6 +78,30 @@ module.exports.updateBuild = async (req, res) => {
     const builds = await Build.findByIdAndUpdate(id, {
         ...req.body.pages
     })
+    const imgs = req.files.map(f => ({
+        url: f.path,
+        filename: f.filename
+    }))
+    // map over array of images and add them to build
+    builds.images.push(...imgs)
+    await builds.save()
+    if (req.body.deleteImgs) {
+        for (let filename of req.body.deleteImgs) {
+            // deletes image from cloudinary
+            await cloudinary.uploader.destroy(filename)
+        }
+        await builds.updateOne({
+            //pull from imags array 
+            $pull: {
+                // where filename from image is in req.body
+                images: {
+                    filename: {
+                        $in: req.body.deleteImgs
+                    }
+                }
+            }
+        })
+    }
     res.redirect(`/pages/${builds._id}`)
 }
 

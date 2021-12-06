@@ -8,6 +8,16 @@ const {
 
 const Schema = mongoose.Schema
 
+const ImageSchema = new Schema({
+    url: String,
+    filename: String
+})
+
+// schema derived from stored url
+ImageSchema.virtual('thumbnail').get(function () {
+    // access image url - replace and add w-200
+    return this.url.replace('/upload', '/upload/w_200')
+})
 // create build schema
 const buildSchema = new Schema({
     // Build name
@@ -15,10 +25,7 @@ const buildSchema = new Schema({
     // Build Type
     type: String,
     status: String,
-    images: [{
-        url: String,
-        filename: String
-    }],
+    images: [ImageSchema],
     // User name
     user: String,
     // build description

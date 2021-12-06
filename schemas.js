@@ -17,7 +17,8 @@ module.exports.buildSchema = Joi.object({
         case: Joi.string().required(),
         cpu: Joi.string().required(),
         psu: Joi.string().required(),
-    }).required()
+    }).required(),
+    deleteImgs: Joi.array()
 })
 
 // Comment schema 

@@ -136,9 +136,11 @@
                 <input type="text" class="form-control" name="pages[case]" aria-label="case"
                     aria-describedby="inputGroup-sizing-sm" required>
             </div>
-            <div class="mb-3">
-                <label for="formFileMultiple" class="form-label">Upload Images</label>
-                <input type="file" class="form-control" id="formFileMultiple" name="image" multiple required>
+            <div class="form-file custom-file mb-3">
+                <input type="file" class="form-control" id="image" name="image" multiple required>
+                <label for="image" class="formfile-label">
+                    <span class="form-file-text custom-file-label">Choose Image(s)...</span></label>
+
                 <div class="invalid-feedback">
                     Show off your build with images, otherwise this is all kind of
                     pointless?

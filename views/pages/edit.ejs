@@ -15,7 +15,8 @@
     <div class="row mx-auto mt-5">
         <h2>Edit your build submission</h2>
         <div class="col-lg-6">
-            <form action="/pages/<%=builds._id%>?methodfield=PUT" class="form-validation" method="POST" novalidate>
+            <form action="/pages/<%=builds._id%>?methodfield=PUT" class="form-validation" method="POST"
+                enctype="multipart/form-data" novalidate>
                 <div class="">
                     <label class="form-label mt-2" for="name">Name: </label>
                     <input class="form-control" type="text" id="name" name="pages[user]"
@@ -109,15 +110,34 @@
                 <input type="text" class="form-control" name="pages[case]" value="<%= builds.case %>" aria-label="case"
                     aria-describedby="inputGroup-sizing-sm" required>
             </div>
-            <div class="mb-3">
-                <label for="formFileMultiple" class="form-label">Upload Images</label>
-                <input type="file" class="form-control" id="formFileMultiple" name="pages[image]" required>
+            <div class="form-file custom-file mb-3">
+                <input type="file" class="form-control" id="image" name="image" multiple>
+                <label for="image" class="formfile-label">
+                    <span class="form-file-text custom-file-label">Choose Image(s)...</span></label>
+
+                <div class="invalid-feedback">
+                    Show off your build with images, otherwise this is all kind of
+                    pointless?
+                </div>
             </div>
             <div class="invalid-feedback">
                 <p class="alert">Show off your build with images, otherwise its kind of
                     pointless?
                 </p>
 
+            </div>
+            <div class="mb-3">
+                <!-- Hide delete title if there are no images -->
+                <% if(builds.images.length > 0) { %>
+                <p class="fw-bold">Choose images to delete(?)</p>
+                <% } %>
+                <!-- display images for user to delete (optional) -->
+                <% builds.images.forEach(function(img, i) {%>
+                <img src="<%=img.thumbnail%>" class="img-fluid" alt="">
+                <div class="form-check-inline mt-2">
+                    <input type="checkbox" id="image-<%=i%>" name="deleteImgs[]" value="<%=img.filename%>">
+                </div>
+                <% }) %>
             </div>
         </div>
         <button class="btn btn-dark" style="width: 50%;">Update Build</button>
