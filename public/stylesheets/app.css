@@ -111,9 +111,9 @@ ul {
     font-weight: 500;
 }
 
-/* card-group */
-#small-cards {
-    padding: 0 300px;
+/* card-group  */
+.small-cards {
+padding: 0 250px;
 }
 
 .card-group .card {
@@ -335,9 +335,9 @@ footer .list-item:hover {
     }
 
 
-    #small-cards {
-        padding: 0 10px;
-    }
+    .small-cards {
+        padding: 0 100px;
+    } 
 
     .card-footer a.btn.btn-primary {
         display: block;
@@ -359,7 +359,7 @@ footer .list-item:hover {
         padding: 10px;
     }
 
-    #small-cards {
+    .small-cards {
         padding: 0;
     }
 

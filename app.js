@@ -8,6 +8,7 @@ const ejsMate = require('ejs-mate')
 const morgan = require('morgan')
 const session = require('express-session')
 const flash = require('connect-flash')
+const helmet = require('helmet')
 const pageRoutes = require('./routes/pages')
 const commentsRoutes = require('./routes/comments')
 const authRoutes = require('./routes/auth')
@@ -29,7 +30,7 @@ const path = require('path');
 // model schema
 const methodOverride = require('method-override')
 const passport = require('passport')
-const LocalPassport = require('passport-local')
+const LocalPassport = require('passport-local');
 
 // Connect to mongoose
 // mongoose.connect('mongodb://localhost:27017/BuildGuild')
@@ -59,6 +60,7 @@ app.use(mongoSanitize({
 
 // session config
 const sessionConfig = {
+    name: 'yessir',
     secret: 'Shady99',
     resave: false,
     saveUninitialized: true,
@@ -79,6 +81,12 @@ app.use(express.urlencoded({
 app.use(methodOverride('methodfield'))
 app.use(session(sessionConfig))
 app.use(flash())
+// This disables the `contentSecurityPolicy` middleware but keeps the rest.
+app.use(
+    helmet({
+        contentSecurityPolicy: false,
+    })
+);
 
 app.use(passport.initialize())
 app.use(passport.session())
