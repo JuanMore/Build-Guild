@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montagu+Slab:wght@100;300;400;500;700&family=Roboto:wght@100;300;400;500;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Montagu+Slab:wght@100;300;400;500;700&family=Roboto:wght@100;300;400;500;700&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Montagu+Slab:wght@100;300;400;500;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,700;1,500&display=swap');
 
 :root {
@@ -121,7 +121,7 @@ ul {
 
 /* card-group  */
 .small-cards {
-padding: 0 250px;
+padding: 0 300px;
 }
 
 .card-group .card {
@@ -317,6 +317,30 @@ footer .list-item:hover {
         margin-left: 8px;
     }
 
+}
+
+@media (min-width: 576px) {
+    .card-group {
+        padding: 0;
+    }
+}
+
+@media (max-width: 1900px) {
+    /* .card-group {
+        padding: 0 10px;
+    } */
+}
+
+@media (max-width: 1775px) {
+    .card-group {
+        padding: 0 200px;
+    }
+}
+
+@media (max-width: 1600px) {
+    .card-group {
+    padding: 0 10px;
+}
 }
 
 @media (max-width: 480px) {
