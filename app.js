@@ -59,6 +59,7 @@ app.use(mongoSanitize({
     replaceWith: '_'
 }))
 
+// newest version syntax - create property store
 const store = MongoStore.create({
     mongoUrl: dbUrl,
     touchAfter: 24 * 60 * 60,
