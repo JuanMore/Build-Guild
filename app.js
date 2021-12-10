@@ -59,7 +59,7 @@ app.use(mongoSanitize({
     replaceWith: '_'
 }))
 
-// const secret = process.env.SECRET || 'Not a good secret, taaaa'
+const secret = process.env.SECRET || 'Not a good secret, taaaa'
 
 
 // newest version syntax - create mongo store for session
@@ -67,7 +67,7 @@ const store = MongoStore.create({
     mongoUrl: dbUrl,
     touchAfter: 24 * 60 * 60,
     crypto: {
-        secret: 'Turd'
+        secret
     }
 });
 
@@ -76,7 +76,7 @@ const store = MongoStore.create({
 const sessionConfig = {
     store,
     name: 'yessir',
-    secret: 'Turd',
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
