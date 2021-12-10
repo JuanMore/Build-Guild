@@ -35,7 +35,7 @@ const LocalPassport = require('passport-local');
 
 // Connect to mongoose
 // mongoose.connect('mongodb://localhost:27017/BuildGuild')
-const dbUrl = process.env.DB_URL 
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/BuildGuild'
 
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
@@ -66,9 +66,7 @@ const secret = process.env.SECRET || 'Not a good secret, taaaa'
 const store = MongoStore.create({
     mongoUrl: dbUrl,
     touchAfter: 24 * 60 * 60,
-    crypto: {
-        secret
-    }
+    secret
 });
 
 
