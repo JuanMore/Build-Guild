@@ -266,7 +266,7 @@ padding: 0 300px;
 }
 
 /* New Build - page */
-.btn:not(:disabled):not(.disabled) {
+button.btn.btn-dark {
     width: 50%;
     margin-left: 15px;
 }

@@ -114,8 +114,6 @@ passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
 
-
-
 app.get('/', (req, res) => {
     res.render('home')
 })
@@ -131,7 +129,6 @@ app.use((req, res, next) => {
     res.locals.error = req.flash('error')
     next()
 })
-
 
 app.use('/', authRoutes)
 app.use('/pages', pageRoutes)
