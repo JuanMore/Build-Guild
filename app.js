@@ -8,6 +8,7 @@ const ejsMate = require('ejs-mate')
 const morgan = require('morgan')
 const session = require('express-session')
 const flash = require('connect-flash')
+const MongoStore = require('connect-mongo')
 const helmet = require('helmet')
 const pageRoutes = require('./routes/pages')
 const commentsRoutes = require('./routes/comments')
@@ -58,8 +59,19 @@ app.use(mongoSanitize({
     replaceWith: '_'
 }))
 
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    touchAfter: 24 * 60 * 60,
+    crypto: {
+        secret: 'Shady99'
+    }
+});
+
+
+
 // session config
 const sessionConfig = {
+    store,
     name: 'yessir',
     secret: 'Shady99',
     resave: false,
