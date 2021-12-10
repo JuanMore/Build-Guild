@@ -133,7 +133,7 @@
                 <% } %>
                 <!-- display images for user to delete (optional) -->
                 <% builds.images.forEach(function(img, i) {%>
-                <img src="<%=img.thumbnail%>" class="img-fluid" alt="">
+                <img src="<%=img.thumbnail%>" class="img-fluid mt-1" alt="">
                 <div class="form-check-inline mt-2">
                     <input type="checkbox" id="image-<%=i%>" name="deleteImgs[]" value="<%=img.filename%>">
                 </div>
