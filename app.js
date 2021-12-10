@@ -59,22 +59,24 @@ app.use(mongoSanitize({
     replaceWith: '_'
 }))
 
-// newest version syntax - create property store
+const secret = process.env_SECRET || 'Not a good secret, taaaa'
+
+
+// newest version syntax - create mongo store for session
 const store = MongoStore.create({
     mongoUrl: dbUrl,
     touchAfter: 24 * 60 * 60,
     crypto: {
-        secret: 'Shady99'
+        secret
     }
 });
-
 
 
 // session config
 const sessionConfig = {
     store,
     name: 'yessir',
-    secret: 'Shady99',
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
