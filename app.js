@@ -1,7 +1,7 @@
-const dotenv = require('dotenv')
-dotenv.config({
-    path: __dirname + '/.env'
-});
+if(process.env.NODE_ENV !== "production"){
+    require('dotenv').config()
+}
+    // require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const ejsMate = require('ejs-mate')
@@ -35,11 +35,11 @@ const LocalPassport = require('passport-local');
 
 // Connect to mongoose
 // mongoose.connect('mongodb://localhost:27017/BuildGuild')
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/BuildGuild'
+const dbUrl = process.env.DB_URL // || 'mongodb://localhost:27017/BuildGuild'
 
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
+    useUnifiedTopology: true
 })
 
 const db = mongoose.connection
@@ -59,14 +59,16 @@ app.use(mongoSanitize({
     replaceWith: '_'
 }))
 
-const secret = process.env.SECRET || 'Not a good secret, taaaa'
+// const secret = process.env.SECRET || 'Not a good secret, taaaa'
 
 
 // newest version syntax - create mongo store for session
 const store = MongoStore.create({
     mongoUrl: dbUrl,
     touchAfter: 24 * 60 * 60,
-    secret
+    crypto: {
+        secret: 'Turd'
+    }
 });
 
 
@@ -74,7 +76,7 @@ const store = MongoStore.create({
 const sessionConfig = {
     store,
     name: 'yessir',
-    secret,
+    secret: 'Turd',
     resave: false,
     saveUninitialized: true,
     cookie: {
