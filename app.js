@@ -1,7 +1,7 @@
-if(process.env.NODE_ENV !== "production"){
-    require('dotenv').config()
-}
-    // require('dotenv').config()
+const dotenv = require('dotenv')
+dotenv.config({
+    path: __dirname + '/.env'
+});
 const express = require('express')
 const mongoose = require('mongoose')
 const ejsMate = require('ejs-mate')
@@ -59,7 +59,7 @@ app.use(mongoSanitize({
     replaceWith: '_'
 }))
 
-const secret = process.env_SECRET || 'Not a good secret, taaaa'
+const secret = process.env.SECRET || 'Not a good secret, taaaa'
 
 
 // newest version syntax - create mongo store for session
