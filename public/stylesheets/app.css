@@ -265,6 +265,12 @@ padding: 0 300px;
     opacity: 0.9;
 }
 
+/* New Build - page */
+.btn:not(:disabled):not(.disabled) {
+    width: 50%;
+    margin-left: 15px;
+}
+
 
 
 /* Carousel */
