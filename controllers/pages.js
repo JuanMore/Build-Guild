@@ -14,7 +14,7 @@ module.exports.index = async (req, res) => {
 module.exports.newBuild = async (req, res) => {
     const builds = await Build.find({})
     builds.author = req.user.username
-    console.log(builds.author)
+    // console.log(builds.author)
     res.render('pages/new', {
         builds
     })
