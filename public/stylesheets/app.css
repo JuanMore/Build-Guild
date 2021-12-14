@@ -414,8 +414,8 @@ footer .list-item:hover {
     }
 
     /* Footer */
-    footer, footer a, footer h5:last-child {
-        margin-top: 5px;
+    footer h5:nth-last-of-type(1) {
+        margin-top: 10px;
     }
 }
 
