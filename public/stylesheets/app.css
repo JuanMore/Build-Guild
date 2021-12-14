@@ -403,6 +403,20 @@ footer .list-item:hover {
         margin-top: 8px;
         float: none;
     }
+    
+    /* How it works - cards */
+    .card-group .card .card-title {
+        text-align: center;
+    }
+
+    .card-text:last-child {
+        text-align: center;
+    }
+
+    /* Footer */
+    footer, footer a, footer h5:last-child {
+        margin-top: 5px;
+    }
 }
 
 @media(max-width: 1200px) {
