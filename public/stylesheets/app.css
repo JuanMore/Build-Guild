@@ -23,6 +23,10 @@ html {
     margin-right: 0;
 }
 
+.nav-username {
+    margin-left: 2.5rem;
+}
+
 .card a {
     text-decoration: none;
 }
@@ -374,6 +378,11 @@ footer .list-item:hover {
     padding: 0 0;
 }
 }
+@media (max-width: 1000px) {
+    .nav-username {
+        margin-left: 0;
+    }
+}
 
 @media (max-width: 1150px) {
     .card-group {
@@ -389,6 +398,10 @@ footer .list-item:hover {
 }
 
 @media(max-width: 500px) {
+
+    .nav-username {
+        margin-left: 0;
+    }
 
     .bg-image h5,
     .bg-image p {
