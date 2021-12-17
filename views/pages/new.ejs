@@ -37,9 +37,10 @@
 
 <section class="container" id="new-build-form">
     <div class="row mx-auto mt-5">
-        <h2>New build submission form</h2>
+        <form action="/pages" method="POST" class="form-validation" enctype="multipart/form-data" novalidate>
         <div class="col-lg-6 col-md-12">
-            <form action="/pages" method="POST" class="form-validation" enctype="multipart/form-data" novalidate>
+        <h2>New build submission form</h2>
+
                 <div class="">
                     <label class="form-label mt-2" for="name">Confirm username:</label>
                     <input class="form-control" type="text" id="name" name="pages[user]"
@@ -104,9 +105,9 @@
         <div class="col-lg-6 col-md-12 col-sm-12 col-sm-4">
             <p class="fw-bold">Hardware:</p>
             <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-sm">CPU</span>
-                <input type="text" class="form-control" name="pages[cpu]" aria-label="cpu"
-                    aria-describedby="inputGroup-sizing-sm" required>
+                <span class="input-group-text" for="cpu" id="inputGroup-sizing-sm">CPU</span>
+                <input type="text" class="form-control" oninput="validate(this)" required name="pages[cpu]" aria-label="cpu"
+                    aria-describedby="inputGroup-sizing-sm">
             </div>
             <div class="input-group input-group-sm mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-sm">Motherboard</span>
@@ -121,7 +122,7 @@
             <div class="input-group input-group-sm mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-sm">Graphics</span>
                 <input type="text" class="form-control" name="pages[graphics]" aria-label="graphics"
-                    aria-describedby="inputGroup-sizing-sm">
+                    aria-describedby="inputGroup-sizing-sm" required>
             </div>
             <div class="input-group input-group-sm mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-sm">PSU</span>
@@ -138,14 +139,13 @@
                 <input type="text" class="form-control" name="pages[case]" aria-label="case"
                     aria-describedby="inputGroup-sizing-sm" required>
             </div>
-            <div class="form-file custom-file mb-3">
+            <div class="form-file custom-file form-group">
                 <input type="file" class="form-control" id="image" name="image" multiple required>
                 <label for="image" class="formfile-label">
                     <span class="form-file-text custom-file-label">Choose Image(s)...</span></label>
-
-                <div class="invalid-feedback">
-                    Show off your build with images, otherwise this is all kind of
-                    pointless?
+                <div class="invalid-feedback mb-2" id="image">
+                    Add images to show off your build, otherwise this is all kind of
+                    pointless, right?
                 </div>
             </div>
         </div>

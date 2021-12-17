@@ -268,7 +268,7 @@ padding: 0 300px;
 
 /* New Build - page */
 button.btn.btn-dark {
-    width: 50%;
+    width: 35%;
     margin-left: 15px;
 }
 
@@ -332,6 +332,13 @@ footer .list-item:hover {
         margin-left: 8px;
     }
 
+}
+
+@media(max-width: 768px){
+      
+    footer h5:nth-last-of-type(1) {
+        margin-top: 10px;
+    }
 }
 
 @media (min-width: 576px) {

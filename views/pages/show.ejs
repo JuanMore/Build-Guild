@@ -57,13 +57,13 @@
                 </div>
                 <div class="card-footer">
                     <a href="#" class="d-inline-block text-muted">
-                        <strong>123</strong> <i class="fas fa-eye"></i></small>
+                        <strong>120</strong> <i class="fas fa-eye"></i></small>
+                    </a>
+                    <a href="#" id="like-button" class="d-inline-block text-muted ml-3">
+                        <strong id="likes">47</strong> <i class="fas fa-thumbs-up"></i></small>
                     </a>
                     <a href="#" class="d-inline-block text-muted ml-3">
-                        <strong>12</strong> <i class="fas fa-thumbs-up"></i></small>
-                    </a>
-                    <a href="#" class="d-inline-block text-muted ml-3">
-                        <strong>200 </strong> <i class="fas fa-comments"></i></small>
+                        <strong>14</strong> <i class="fas fa-comments"></i></small>
                     </a>
                     <% if( currentUser && builds.author.equals(currentUser._id)) {%>
                     <a href="/pages/<%= builds._id %>/edit" class="ml-3 mr-2 btn-sm btn-info">Edit
