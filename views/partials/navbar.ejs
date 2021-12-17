@@ -16,15 +16,23 @@
                 </li>
                 <% } %>
             </ul>
+            <ul class="navbar-nav mx-auto">
+                <% if(currentUser) {%>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#">Hello, <%=currentUser.username%></a>
+                </li>
+                <% } %>
+            </ul>
             <div class="navbar-nav ml-auto">
                 <% if(!currentUser) {%>
                 <a class="nav-link btn-primary btn-light" href="/login">Login</a>
                 <a class="nav-link btn-primary btn-light" href="/register">Register</a>
                 <% } else {%>
-                    <li class="nav-item">
-                        <a class="nav-link muted" data-toggle="tab" href="#"><%=currentUser.username%></a>
-                    </li>
+                    
                 <a class="nav-link" href="/logout">Logout</a>
+                <!-- <li class="nav-item">
+                    <a class="nav-link muted" data-toggle="tab" href="#">User: <%=currentUser.username%></a>
+                </li> -->
                 <% } %>
             </div>
         </div>

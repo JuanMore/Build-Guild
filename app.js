@@ -118,6 +118,7 @@ app.get('/', (req, res) => {
     res.render('home')
 })
 
+
 app.use((req, res, next) => {
     if (!['/login', '/'].includes(req.originalUrl)) {
         req.session.returnTo = req.originalUrl;
