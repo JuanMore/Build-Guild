@@ -33,8 +33,6 @@ router.route('/:id')
     // Build show 
     .get(catchErr(pages.displayBuild))
 
-    .get(catchErr(pages.displayUser))
-
     // Edit put request
     .put(isAuth, isAuthor, upload.array('image'), validateBuilds, catchErr(pages.updateBuild))
 

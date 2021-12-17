@@ -55,23 +55,23 @@ module.exports.displayBuild = async (req, res) => {
     })
 }
 
-module.exports.displayUser = async (req, res) => {
-    // pass in id from req . -> params -> .id
-    const builds = await Build.findById(req.params.id).populate({
-        // nested populate to populate each author to their comment
-        path: 'comments',
-        populate: {
-            path: 'author'
-        }
-    }).populate('author')
-    if (!builds) {
-        req.flash('error', 'Error: Cannot find account.')
-        return res.redirect('/pages')
-    }
-    res.render('pages/user', {
-        builds
-    })
-}
+// module.exports.displayUser = async (req, res) => {
+//     // pass in id from req . -> params -> .id
+//     const builds = await Build.findById(req.params.id).populate({
+//         // nested populate to populate each author to their comment
+//         path: 'comments',
+//         populate: {
+//             path: 'author'
+//         }
+//     }).populate('author')
+//     if (!builds) {
+//         req.flash('error', 'Error: Cannot find account.')
+//         return res.redirect('/pages')
+//     }
+//     res.render('pages/user', {
+//         builds
+//     })
+// }
 
 module.exports.renderEdit = async (req, res) => {
     const {
