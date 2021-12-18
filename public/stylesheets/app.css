@@ -27,8 +27,8 @@ html {
     margin-left: 2.5rem;
 }
 
-* > a {
-    text-decoration: none;
+a {
+    text-decoration: none !important;
 }
 
 ul {
