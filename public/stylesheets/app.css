@@ -27,12 +27,7 @@ html {
     margin-left: 2.5rem;
 }
 
-.card a {
-    text-decoration: none;
-}
-
-.card-footer a,
-a {
+* > a {
     text-decoration: none;
 }
 
@@ -295,6 +290,7 @@ footer a,
 footer h5 {
     font-size: 14px;
     color: #ffff;
+
 }
 
 footer .list-item {
@@ -302,8 +298,14 @@ footer .list-item {
     text-decoration: none;
 }
 
-footer .list-item:hover {
+footer a:hover {
     border-bottom: 2px solid #eee;
+}
+
+footer .text-center a {
+    color: var(--primary-color);
+    text-decoration: none;
+
 }
 
 /* Media Quieres */
