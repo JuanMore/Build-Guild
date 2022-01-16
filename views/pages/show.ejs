@@ -131,7 +131,7 @@
             <a class="mr-2" href="/login">Login</a>
             <% } %>
             <% if(currentUser) { %>
-            <div class="card">
+            <div class="card comment-section">
                 <!-- Comments form -->
                 <form action="/pages/<%=builds._id%>/comments" method="POST" class="p-4">
                     <div class="mb-3">
@@ -142,7 +142,7 @@
                             Looks Good.
                         </div>
                     </div>
-                    <button class="btn btn-success">Submit</button>
+                    <button class="btn btn-submit">Submit</button>
                 </form>
             </div>
             <% } %>

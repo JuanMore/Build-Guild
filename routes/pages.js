@@ -29,6 +29,7 @@ router.route('/')
 router.get('/new', isAuth, catchErr(pages.newBuild))
 
 
+
 router.route('/:id')
     // Build show 
     .get(catchErr(pages.displayBuild))
@@ -38,6 +39,9 @@ router.route('/:id')
 
     // Delete a build post
     .delete(catchErr(pages.destroyBuild))
+
+    router.route('/:id/account')
+    .get(catchErr(pages.displayAccount))
 
 // Edit route 
 router.get('/:id/edit', isAuth, isAuthor, catchErr(pages.renderEdit))

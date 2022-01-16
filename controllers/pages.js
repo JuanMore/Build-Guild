@@ -1,4 +1,6 @@
 const Build = require('../models/build')
+const User = require('../models/user')
+
 const {
     cloudinary
 } = require('../cloud')
@@ -55,23 +57,11 @@ module.exports.displayBuild = async (req, res) => {
     })
 }
 
-// module.exports.displayUser = async (req, res) => {
-//     // pass in id from req . -> params -> .id
-//     const builds = await Build.findById(req.params.id).populate({
-//         // nested populate to populate each author to their comment
-//         path: 'comments',
-//         populate: {
-//             path: 'author'
-//         }
-//     }).populate('author')
-//     if (!builds) {
-//         req.flash('error', 'Error: Cannot find account.')
-//         return res.redirect('/pages')
-//     }
-//     res.render('pages/user', {
-//         builds
-//     })
-// }
+module.exports.displayAccount = async (req, res) => {
+    // const builds = await User.findById(id)
+    const user = await User.findById(req.params.id)
+    res.render('pages/account', {user})
+}
 
 module.exports.renderEdit = async (req, res) => {
     const {
@@ -79,12 +69,12 @@ module.exports.renderEdit = async (req, res) => {
     } = req.params
     const builds = await Build.findById(id).populate('author')
     if (!builds) {
-        req.flas('error', 'Build not found.')
+        req.flash('error', 'Build not found.')
         return res.redirect('/pages')
     }
     res.render('pages/edit', {
         builds
-    })
+})
 }
 
 module.exports.updateBuild = async (req, res) => {

@@ -19,7 +19,7 @@
             <div class="navbar-nav mx-auto">
                 <% if(currentUser) {%>
                 <li class="nav-item nav-username">
-                    <a class="nav-link" data-toggle="tab" href="#">Hello, <%=currentUser.username%></a>
+                    <a class="nav-link" data-toggle="tab" href="/pages/<%= currentUser._id %>/account">Hello, <%=currentUser.username%></a>
                 </li>
                 <% } %>
             </div>

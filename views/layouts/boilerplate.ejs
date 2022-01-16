@@ -21,18 +21,16 @@
 <!-- Biolerplate include partials  -->
 <!-- display flex (d-flex)-->
 
-<body class="d-flex flex-column">
+<body class="d-flex flex-column min-vh-100">
     <%- include('../partials/navbar') %>
     <main class="container-fluid">
         <%- include('../partials/flash') %>
         <%- body %>
     </main>
 
-    <footer>
         <%- include('../partials/footer') %>
         <button class="btn btn-primary btn-floating" id="btn-up"><i class="fas fa-arrow-up"></i>
         </button>
-    </footer>
 
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
