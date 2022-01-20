@@ -465,10 +465,6 @@ footer a:hover, .copy a:hover {
 
 @media(max-width: 1200px) {
 
-    .bg-image {
-        height: 50vh;
-    }
-
     .bg-image h1 {
         width: 100%;
         padding: 80px 0 20px 0;
