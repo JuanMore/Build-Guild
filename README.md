@@ -1,6 +1,5 @@
 # Build-Guild 
 
-(Still in progress)
 Current demo: http://buildguild.online/
 
 
