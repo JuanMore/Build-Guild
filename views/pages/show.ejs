@@ -12,8 +12,10 @@
     </div>
 </section>
 
-
 <div class="container mt-2" id="build-posts-show">
+    <aside class="share-btn">
+        <i class="fa fa-share-alt" id="shareBtn">Share</i>
+    </aside>
     <div class="row d-flex mx-auto">
         <div class="col-lg-6 col-md-6 col-md-6 mt-5">
             <div class="card mb-4">
@@ -171,3 +173,21 @@
         </div>
     </div>
 </div>
+
+
+<script>
+ 
+ const shareClick = document.getElementById('shareBtn')
+ const share = document.querySelector('.share-btn')
+ shareClick.addEventListener('click', shareBtnClicked)
+     
+ function shareBtnClicked() {
+
+     // copy link to clipboard declare it to variable - link
+    const link = navigator.clipboard.writeText(window.location.href)
+    // display success message after copy
+    share.innerHTML = `<p class="successMsg">Link copied to clipboard!</p>`
+ }
+     
+    
+</script>

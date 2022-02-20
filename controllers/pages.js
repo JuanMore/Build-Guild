@@ -52,6 +52,7 @@ module.exports.displayBuild = async (req, res) => {
         req.flash('error', 'Error: Cannot find that build. It may have been removed by the author or admin.')
         return res.redirect('/pages')
     }
+
     res.render('pages/show', {
         builds
     })

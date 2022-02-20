@@ -291,6 +291,18 @@ button.btn.btn-dark {
     margin-left: 15px;
 }
 
+/* Show page */
+
+.share-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+    position: relative;
+    font-size: 1.1rem;
+    margin: 50px 0 0 20px;
+    cursor: pointer;
+}
+
 
 
 /* Carousel */
