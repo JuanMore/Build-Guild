@@ -182,12 +182,9 @@
  shareClick.addEventListener('click', shareBtnClicked)
      
  function shareBtnClicked() {
-
      // copy link to clipboard declare it to variable - link
     navigator.clipboard.writeText(window.location.href)
     // display success message after copy
     share.innerHTML = `<p class="successMsg">Link copied to clipboard!</p>`
  }
-     
-    
 </script>
