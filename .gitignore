@@ -1,4 +1,4 @@
 node_modules
 .env
-.csr
-.key
+example_com.csr
+example_com.key
