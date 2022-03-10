@@ -174,13 +174,15 @@
     </div>
 </div>
 
-
+<!-- share button script -->
 <script>
- 
  const shareClick = document.getElementById('shareBtn')
  const share = document.querySelector('.share-btn')
+
+ // set event listener and declare function
  shareClick.addEventListener('click', shareBtnClicked)
-     
+
+ // define shareBtnClicked func
  function shareBtnClicked() {
      // copy link to clipboard declare it to variable - link
     navigator.clipboard.writeText(window.location.href)

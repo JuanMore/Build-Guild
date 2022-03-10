@@ -5,6 +5,10 @@
     --primary-color: #f89e29
 }
 
+* {
+    -webkit-overflow-scrolling: touch;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     background: #eee;
@@ -41,6 +45,7 @@ ul {
 .container-fluid {
     width: 100%;
 }
+
 
 .container-fluid {
     margin-top: 0;
