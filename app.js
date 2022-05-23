@@ -35,7 +35,7 @@ const LocalPassport = require('passport-local');
 
 // Connect to mongoose
 // mongoose.connect('mongodb://localhost:27017/BuildGuild')
-const dbUrl = process.env.DB_URL // || 'mongodb://localhost:27017/BuildGuild'
+const dbUrl = process.env.DB_URL
 
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
